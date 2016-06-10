@@ -1,0 +1,8 @@
+# mailgun setting 
+mailgun_api_key: "key-a71283cebbf7a91891a28e4fde63fbaa"
+mailgun_domain: "ss.tan90.cn"
+mailgun_sender: "noreply@ss.tan90.cn"
+
+default_traffic: 5368709120
+
+app_name: "OpenMind"

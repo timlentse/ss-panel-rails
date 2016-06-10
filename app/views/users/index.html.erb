@@ -1,0 +1,168 @@
+<div id="wrapper">
+  <%= render 'layouts/nav' %>
+  <div id="page-wrapper">
+    <%= render 'layouts/flash' %>
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header">用户信息</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-3">
+                <i class="fa fa-comments fa-5x"></i>
+              </div>
+              <div class="col-xs-9 text-right">
+                <div class="huge"><%= @comments_count %></div>
+                <div>评论</div>
+              </div>
+            </div>
+          </div>
+          <a href="#chat-msg">
+            <div class="panel-footer">
+              <span class="pull-left">View Details</span>
+              <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+              <div class="clearfix"></div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="panel panel-green">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-3">
+                <i class="fa fa-share-alt fa-5x"></i>
+              </div>
+              <div class="col-xs-9 text-right">
+                <div class="huge"><%= @nodes_count %></div>
+                <div>节点数</div>
+              </div>
+            </div>
+          </div>
+          <a href="/user/node">
+            <div class="panel-footer">
+              <span class="pull-left">View Details</span>
+              <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+              <div class="clearfix"></div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="panel panel-yellow">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-3">
+                <i class="fa fa-exchange fa-5x"></i>
+              </div>
+              <div class="col-xs-9 text-right">
+                <div class="huge"><%= k_m_g(@current_user.transfer_enable) %></div>
+                <div><%= k_m_g(@current_user.d+@current_user.u) %>已用</div>
+              </div>
+            </div>
+          </div>
+          <a href="/user/traffic">
+            <div class="panel-footer">
+              <span class="pull-left">View Details</span>
+              <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+              <div class="clearfix"></div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="panel panel-red">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-3">
+                <i class="fa fa-support fa-5x"></i>
+              </div>
+              <div class="col-xs-9 text-right">
+                <div class="huge">反馈</div>
+              </div>
+            </div>
+          </div>
+          <a href="mailto:tinglenxan@gmail.com">
+            <div class="panel-footer">
+              <span class="pull-left">View Details</span>
+              <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+              <div class="clearfix"></div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <i class="fa fa-bar-chart-o fa-fw"></i>
+            流量使用
+          </div>
+          <div class="panel-body">
+            <div id="morris-area-chart"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="chat-panel panel panel-default">
+          <div class="panel-heading">
+            <i class="fa fa-comments fa-fw"></i>
+            Chat
+          </div>
+          <div class="panel-body">
+            <ul id="chat-msg" class="chat">
+              <% @comments.each_with_index do |comment,ix| %>
+                <% direction = ix%2==0 ? "right" : "left" %>
+                <li class="<%= direction %> clearfix">
+                  <span class="chat-img pull-<%= direction %>">
+                    <img src="<%= comment[:avatar] %>" alt="User Avatar" class="img-circle" />
+                  </span>
+                  <div class="chat-body clearfix">
+                    <div class="header">
+                      <strong class="primary-font"><%= comment[:user_name] %></strong>
+                      <small class="pull-right text-muted">
+                        <i class="fa fa-clock-o fa-fw"></i><%= comment[:time] %>
+                    </small>
+                    </div>
+                    <p><%= comment[:content] %></p>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="panel-footer">
+            <div class="input-group">
+              <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+              <span class="input-group-btn">
+                <button class="btn btn-warning btn-sm" id="btn-chat">
+                  Send
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script> <%= render "area_chart.js.erb" %></script>
+<script>
+$(document).ready(function(){
+  $("#btn-chat").click(function(e){
+    e.preventDefault();
+    content = $("#btn-input").val();
+    if (content.length!=0){
+      user_name = "<%= @current_user.user_name %>";
+      email = "<%= @current_user.email %>";
+      $.post("/user/comments",{"email": email,"user_name": user_name,"content": content},function(data){
+        $("#btn-input").val('');
+      }) 
+    }
+  })
+})
+</script>

@@ -1,0 +1,19 @@
+$(function() {
+  Morris.Area({
+    element: 'morris-area-chart',
+    data:[
+      <% @traffics.each do |traffic| %>
+        {
+          period: <%= traffic.log_at.strftime("%Y-%m-%d") %>,
+          traffic: <%= traffic.traffic %>
+      },
+    <% end %>
+    ],
+    xkey: 'period',
+    ykeys: ['traffic'],
+    labels: ['traffic'],
+    pointSize: 2,
+    hideHover: 'auto',
+    resize: true
+  });
+});

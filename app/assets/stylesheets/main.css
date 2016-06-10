@@ -1,0 +1,77 @@
+#side-menu>li>a>i {
+  margin-right:7px;
+}
+.auth-panel-header{
+  text-align:center;
+  padding-bottom:20px;
+  margin: 20px 0px 20px;
+  border-bottom:1px solid #eee;
+}
+.center {
+  text-align: center;
+}
+#index-page{
+  margin-top:10px;
+}
+.navbar-default{
+  border-color:#f8f8f8;
+}
+.index-title{
+  font-size:1.3em;
+}
+a#register{
+  display:block;
+  margin-bottom:10px;
+}
+a#passwd-reset{
+  display:block;
+  margin-bottom:10px;
+}
+a#login{
+  display:block;
+  margin-bottom:10px
+}
+.cc .form-control{
+  height:50px; 
+}
+.cc{
+  position: absolute; top: 0px; left: 0px; width: 100%; min-height: 100%; background: linear-gradient(0deg, #0b4182 1%, #1e88e5 100%);
+}
+.panel-body{
+  padding:25px;
+}
+.chat-body p {
+  color:#555;
+}
+.footer{ 
+  /* position:fixed; */
+  bottom:0;
+  width:100%; 
+  height:50px;
+  background-color:#fff;
+  font-size:0.9em;
+}
+.footer p {
+  text-align:center;
+  font-size:1em;
+  padding-top:15px;
+  color:#8a9399;
+}
+.jumbotron{
+  background-color:#fff;
+}
+.error{
+  color:#f00;
+  padding-left:10px;
+}
+.success{
+  color:#0f0;
+  font-size:1.1em;
+}
+.page-header{
+  font-size:1.5em;
+  margin-top:20px;
+}
+#check-in{
+  margin-left:20px;
+}

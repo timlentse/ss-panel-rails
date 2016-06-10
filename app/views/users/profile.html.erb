@@ -1,0 +1,55 @@
+<div id="wrapper">
+  <%= render 'layouts/nav' %>
+  <div id="page-wrapper">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header">我的信息</h1>
+      </div>
+    </div>
+    <div class='row'>
+      <div class="col-lg-8">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <i class="fa fa-user fa-fw"></i>你好 <%= @current_user.user_name %>
+        </div>
+        <div class="panel-body">
+          <div class="list-group">
+            <a href="#" class="list-group-item">
+              加入时间
+              <span class="pull-right text-muted small"><em><%= @reg_date %></em>
+              </span>
+            </a>
+            <a href="#" class="list-group-item">
+              邮箱地址
+              <span class="pull-right text-muted small"><em><%= @current_user.email %></em>
+              </span>
+            </a>
+            <a href="#" class="list-group-item">
+              最后签到时间
+              <span class="pull-right text-muted small"><em><%= @checkin_time %></em>
+              </span>
+            </a>
+            <a href="#" class="list-group-item">
+              最后登录时间
+              <span class="pull-right text-muted small"><em><%= @login_time %></em>
+              </span>
+            </a>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            连接信息
+          </div>
+          <div class="panel-body">
+            <p><strong>端口: </strong> <%= @current_user.port %></p>
+            <p><strong>密码: </strong> <%= @current_user.passwd %></p>
+            <p><strong>加密方式: </strong> <%= @current_user.method %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
