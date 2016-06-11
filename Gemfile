@@ -29,7 +29,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap_sb_admin_base_v2'
 
 # Use Capistrano for deployment
-gem 'capistrano-rails', group: :development
+gem 'capistrano-rails'
 
 # Use config to define custom variable
 gem 'config'
