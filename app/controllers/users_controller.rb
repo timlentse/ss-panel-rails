@@ -76,11 +76,6 @@ class UsersController < ApplicationController
     @usage = @usage.round(2) * 100
   end
 
-  def check_in?
-    @checked = Time.at(@current_user.last_get_gift_time)>Time.now-1.day
-    @checked
-  end
-
   def clear_flash
     flash[:notice] = nil
   end

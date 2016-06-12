@@ -16,9 +16,6 @@
 .navbar-default{
   border-color:#f8f8f8;
 }
-.index-title{
-  font-size:1.3em;
-}
 a#register{
   display:block;
   margin-bottom:10px;
@@ -74,4 +71,14 @@ a#login{
 }
 #check-in{
   margin-left:20px;
+}
+.jumbotron h1{
+  font-size:50px;
+}
+.jumbotron p {
+  text-align:center;
+}
+#index-page .panel-heading{
+  text-align: center;
+  font-size: 1.3em;
 }

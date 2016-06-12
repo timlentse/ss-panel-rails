@@ -8,6 +8,7 @@
     </div>
     <div class="row">
       <div class="col-lg-10">
+
         <div class="col-lg-4 col-md-6">
           <div class="panel panel-primary">
             <div class="panel-heading">
@@ -30,6 +31,7 @@
             </a>
           </div>
         </div>
+
         <div class="col-lg-4 col-md-6">
           <div class="panel panel-green">
             <div class="panel-heading">
@@ -38,7 +40,7 @@
                   <i class="fa fa-group fa-5x"></i>
                 </div>
                 <div class="col-xs-9 text-right">
-                  <div class="huge"><%= User.count %></div>
+                  <div class="huge"><%= @checked_num %></div>
                   <div>今日签到用户</div>
                 </div>
               </div>
@@ -52,6 +54,7 @@
             </a>
           </div>
         </div>
+
         <div class="col-lg-4 col-md-6">
           <div class="panel panel-green">
             <div class="panel-heading">
@@ -60,7 +63,7 @@
                   <i class="fa fa-group fa-5x"></i>
                 </div>
                 <div class="col-xs-9 text-right">
-                  <div class="huge"><%= User.count %></div>
+                  <div class="huge"><%= @online_last_one_hour %></div>
                   <div>前一小时在线用户</div>
                 </div>
               </div>
@@ -74,6 +77,7 @@
             </a>
           </div>
         </div>
+
         <div class="col-lg-4 col-md-6">
           <div class="panel panel-red">
             <div class="panel-heading">
@@ -82,12 +86,35 @@
                   <i class="fa fa-share-alt fa-5x"></i>
                 </div>
                 <div class="col-xs-9 text-right">
-                  <div class="huge"><%= User.count %></div>
+                  <div class="huge"><%= Node.count %></div>
                   <div>节点数</div>
                 </div>
               </div>
             </div>
             <a href="/admins/node">
+              <div class="panel-footer">
+                <span class="pull-left">View Details</span>
+                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                <div class="clearfix"></div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="panel panel-yellow">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-xs-3">
+                  <i class="fa fa-exchange fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                  <div class="huge"><%= k_m_g(@total_traffic) %></div>
+                  <div>总流量</div>
+                </div>
+              </div>
+            </div>
+            <a href="/admins">
               <div class="panel-footer">
                 <span class="pull-left">View Details</span>
                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

@@ -1,5 +1,5 @@
 $(function() {
-  Morris.Area({
+  Morris.Line({
     element: 'morris-area-chart',
     data:[
       <% @traffics.each do |traffic| %>
@@ -14,6 +14,7 @@ $(function() {
     labels: ['traffic'],
     pointSize: 2,
     hideHover: 'auto',
-    resize: true
+    resize: true,
+    parseTime: false
   });
 });

@@ -27,3 +27,6 @@ config/environments/*.local.yml
 # Ignore capistrano configuration files
 config/deploy*
 Capfile
+
+# Ignore database.yml file
+config/database.yml

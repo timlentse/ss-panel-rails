@@ -23,13 +23,18 @@
   </div>
 </nav>
 <div class='container'>
-  <div id="index-page"
+  <div id="index-page">
     <div class="row">
       <div class="col-lg-12">
         <div class="jumbotron">
           <h1 class="center index-title">Free your mind and open your eyes</h1>
-          <p class="center"><a class="btn btn-primary btn-lg" role="button">注册</a>
-          </p>
+          <p>轻松科学上网 保护个人隐私</p>
+          <% if is_login? %>
+            <p class="center"><a href="/user" class="btn btn-primary btn-lg" role="button">进入用户中心</a>
+          <% else %>
+            <p class="center"><a href='/login' class="btn btn-primary btn-lg" role="button">登录/注册</a>
+          <% end %>
+            </p>
         </div>
       </div>
     </div>
@@ -40,7 +45,7 @@
             Super Fast
           </div>
           <div class="panel-body">
-            <p style="font-size:1.1em">Bleeding edge techniques using Asynchronous I/O and Event-driven programming</p>
+            <p style="font-size:1.3em">Bleeding edge techniques using Asynchronous I/O and Event-driven programming</p>
           </div>
         </div>
       </div>
@@ -50,7 +55,7 @@
             Open Source
           </div>
           <div class="panel-body">
-            <p style="font-size:1.1em">A worldwide community devoted to deliver bug-free code and long-term support.</p>
+            <p style="font-size:1.3em">A worldwide community devoted to deliver bug-free code and long-term support.</p>
           </div>
         </div>
       </div>
@@ -60,7 +65,7 @@
             Easy to work with
           </div>
           <div class="panel-body">
-            <p style="font-size:1.1em">Avaliable on multiple platforms, including PC, MAC, Mobile (Android and iOS) and Routers (OpenWRT).</p>
+            <p style="font-size:1.3em">Avaliable on multiple platforms, including PC, MAC, Mobile (Android and iOS) and Routers (OpenWRT).</p>
           </div>
         </div>
       </div>

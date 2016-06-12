@@ -34,4 +34,9 @@ class ApplicationController < ActionController::Base
     "https://www.gravatar.com/avatar/#{hash}?s=50"
   end
 
+  def check_in?
+    @checked = Time.at(@current_user.last_get_gift_time)>Time.now-1.day
+    @checked
+  end
+
 end
