@@ -21,7 +21,7 @@
                   <input id="password_comfirm" class="form-control" placeholder="再次输入密码" name="password_comfirm" type="password">
                 </div>
                 <a id="login" href="/login">已有账号</a>
-                <a id="submit" class="btn btn-lg btn-info btn-block">注册</a>
+                <a id="submit" onclick="register()" class="btn btn-lg btn-info btn-block">注册</a>
             </fieldset>
           </form>
         </div>
@@ -29,35 +29,3 @@
     </div>
   </div>
 </div>
-
-<script>
-function insertError(msg){
-  if ($(".error").length==0){
-    content = '<p class="error"><i class="fa fa-close"></i>'+msg+'</p>';
-    $(content).insertAfter(".form-control:last");
-  }else{
-    html_content = '<i class="fa fa-close"></i>'+msg;
-    $(".error").html(html_content);
-  }
-}
-$(document).ready(function(){
-  $("#submit").click(function(e){
-    e.preventDefault();
-    user_name = $("#user_name").val();
-    email = $("#email").val();
-    password = $("#password").val();
-    if ($("#password_comfirm").val()==password){
-      $.post("/register", {"user_name":user_name, "email":email, "password":password},function(data){
-        if (data["code"]==1){
-          window.location.href="/login";
-        }
-        else {
-          insertError(data["msg"]);
-        }
-      })
-    } else {
-      insertError("两次密码不一致");
-    }
-  })
-})
-</script>

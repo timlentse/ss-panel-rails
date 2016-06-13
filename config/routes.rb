@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   get '/user/edit' => 'users#edit'
   get '/user/invite' => 'users#invite'
   post '/user/comments'=>'users#comments'
+  post '/user/password'=>'users#change_password'
+  post '/user/connectPassword'=>'users#change_connect_password'
 
   post '/checkin'=>'users#check_in'
 

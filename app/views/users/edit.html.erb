@@ -13,10 +13,10 @@
             密码修改
           </div>
           <div class="panel-body">
-            <p>当前密码：<input type='password' class='form-control' id='original_passwd'></input></p>
+            <p>当前密码：<input type='password' class='form-control' id='original_password'></input></p>
             <p>新密码：<input type='password' class='form-control' id='password'></input></p>
             <p>确认密码：<input type='password' class='form-control' id='password_comfirm'></input></p>
-            <a style="color:#fff" class='btn btn-info'>修改</a>
+            <a id="change-pass" onclick="changePassword()" style="color:#fff" class='btn btn-info'>修改</a>
           </div>
         </div>
       </div>
@@ -26,14 +26,14 @@
             Shadowsocks连接信息修改
           </div>
           <div class="panel-body">
-            <p>连接密码：<input type='password' class='form-control' id='password'></input></p>
+            <p>连接密码：<input type='password' class='form-control' id='connect_password'></input></p>
             <p>加密方式：
             <select id='method' class="form-control">
               <option>rc4-md5</option>
               <option>aes-256-cfb</option>
             </select>
             </p>
-            <a class='btn btn-info'>修改</a>
+            <a id="change-connect" onclick="changeConnectPassword()" class='btn btn-info'>修改</a>
           </div>
         </div>
       </div>

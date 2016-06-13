@@ -54,6 +54,28 @@ class UsersController < ApplicationController
     end
   end
 
+  def change_password
+    if @current_user.authenticate(@params[:original])
+      @current_user.password=@params[:password]
+      if @current_user.save
+        render json: {code: 1, msg:"修改成功"}
+      else
+        render json: {code: 0, msg:"修改失败"}
+      end
+    else
+      render json: {code: 0, msg: "原密码错误"}
+    end
+  end
+
+  def change_connect_password
+    @current_user.passwd = @params[:password]
+    if @current_user.save
+      render json: {code: 1, msg: "修改成功"}
+    else
+      render json: {code: 0 , msg: "修改失败"}
+    end
+  end
+
   private
 
   def fetch_all_comments
@@ -73,7 +95,7 @@ class UsersController < ApplicationController
 
   def init_var
     @usage = (@current_user.d+@current_user.u)/@current_user.transfer_enable.to_f
-    @usage = @usage.round(2) * 100
+    @usage = (@usage * 100.0).round(2)
   end
 
   def clear_flash

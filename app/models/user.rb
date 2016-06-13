@@ -5,25 +5,15 @@ class User < ActiveRecord::Base
 
   has_one :user_token, foreign_key: :user_id
 
-  include BCrypt
-
   def user_id
     "00000#{id}"[-6..-1]
   end
 
-  # def password
-  #   @password ||= Password.new(pass)
-  # end
-  #
-  # def password=(new_password)
-  #   @password = Password.create(new_password)
-  #   self.pass = @password
-  # end
-
   def password=(new_passwd)
     self.pass = Digest::SHA256.hexdigest(new_passwd)
   end
-  def another_way(password_ori)
+
+  def authenticate(password_ori)
     self.pass == Digest::SHA256.hexdigest(password_ori)
   end
 

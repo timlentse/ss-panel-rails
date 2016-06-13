@@ -6,8 +6,7 @@ class AuthenticationsController < ApplicationController
   def login
     if request.post?
       user = User.find_by_email(@params[:email])
-      # if user and (user.password == @params[:password] or user.another_way(@params[:password]))
-      if user and user.another_way(@params[:password])
+      if user and user.authenticate(@params[:password])
         session[:user_id] = user.user_id
         render json: {code:1,msg:"登录成功"}
         user.update(last_check_in_time: Time.now.to_i)

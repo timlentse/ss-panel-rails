@@ -5,6 +5,7 @@ class CommonsController < ApplicationController
     if session[:user_id]
       @current_user = User.find_by_id(session[:user_id])
     end
+    @index=true
   end
 
 end
