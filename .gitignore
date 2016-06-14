@@ -17,7 +17,6 @@
 /tmp
 /log
 /test
-/Gemfile.lock
 /vendor/ruby
 
 config/settings.local.yml
