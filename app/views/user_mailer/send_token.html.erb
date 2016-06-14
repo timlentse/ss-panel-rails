@@ -3,10 +3,11 @@
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
-  <body>
-    <h3>欢迎加入 ss.tan90.cn 的大家庭,<%= @user.user_name %></h3>
-    <p>你的登录用户名是<%= @user.email %>.<br></p>
-    <p>请尽快在三小时之内验证你的邮箱 <%= @url %>
-    </p>
+  <body style="padding:50px 50px">
+    <h1 style="font-size:1.2em">亲爱的<%= @user.user_name %></h1>
+    <p>您收到此邮件是因为您在<%= Settings.app_name %>申请了密码重置,如果不是您申请的,请忽略此邮件.</p>
+    <p> 若要开始重置密码,请点击以下链接 :)</p>
+    <p>请尽快在三小时之内点击<%= @url %> 重置你的密码</p>
+    <p>--<%= Settings.app_name %></p>
   </body>
 </html>

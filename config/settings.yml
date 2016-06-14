@@ -1,5 +1,5 @@
 # 新用户注册获得5G（5*1024*1024*1024B) 流量
 default_traffic: 5368709120
 
-# app 名称
+# App 名称
 app_name: "OpenMind"

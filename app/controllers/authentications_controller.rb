@@ -45,9 +45,7 @@ class AuthenticationsController < ApplicationController
     if request.post?
       @user = User.find_by_email(@params[:email])
       if @user
-        token_string = SecureRandom.uuid
-        expire_at = Time.now+4.hours
-        passwd_reset_token = PasswordReset.create(email: @params[:email], token: token_string, expire_at: expire_at) 
+        send_token_email
         render json: {code:1,msg:"发送成功!请检查你的邮箱."}
       else
         render json: {code:0,msg:"该邮箱没有注册"}
@@ -99,8 +97,15 @@ class AuthenticationsController < ApplicationController
     token_string = SecureRandom.uuid
     @redis.set_key_with_expire(@user.email,token_string)
     verify_url = "https://ss.tan90.cn/verify?email=#{@user.email}&token=#{token_string}"
-    UserMailer.send_token(@user,verify_url).deliver_now
+    UserMailer.send_verify(@user,verify_url).deliver_now
   end
 
+  def send_token_email
+    token_string = SecureRandom.uuid
+    expire_at = Time.now+4.hours
+    PasswordReset.create(email: @params[:email], token: token_string, expire_at: expire_at) 
+    token_url = "https://ss.tan90.cn/password/token/#{token_string}"
+    UserMailer.send_token(@user,token_url).deliver_now
+  end
 
 end
