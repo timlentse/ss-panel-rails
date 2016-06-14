@@ -1,6 +1,5 @@
 class AuthenticationsController < ApplicationController
 
-  before_action :init_stuff
   skip_before_action :validate_login_status
 
   def login
@@ -76,7 +75,8 @@ class AuthenticationsController < ApplicationController
     if @token and @token.eql?(@params[:token])
       @user = User.find_by_email(@email)
       if @user
-        @user.update(enable: 1)
+        @user.update(enable: 1,is_email_verify: 1)
+        session[:user_id] = @user.user_id
         @status=1
       else
         @status=-1
@@ -88,6 +88,13 @@ class AuthenticationsController < ApplicationController
 
   private
 
+  def generate_invite_code
+    5.times do |i|
+      code = SecureRandom.uuid
+      InviteCode.create(code: code, user_id: @user.id)
+    end
+  end
+
   def send_verify_email
     token_string = SecureRandom.uuid
     @redis.set_key_with_expire(@user.email,token_string)
@@ -95,15 +102,5 @@ class AuthenticationsController < ApplicationController
     UserMailer.send_token(@user,verify_url).deliver_now
   end
 
-  def init_stuff
-    @redis = MyRedis.new
-  end
-
-  def generate_invite_code
-    5.times do |i|
-      code = SecureRandom.uuid
-      InviteCode.create(code: code, user_id: @user.id)
-    end
-  end
 
 end

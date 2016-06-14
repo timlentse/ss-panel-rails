@@ -1,8 +1,5 @@
-# mailgun setting 
-mailgun_api_key: "key-a71283cebbf7a91891a28e4fde63fbaa"
-mailgun_domain: "ss.tan90.cn"
-mailgun_sender: "noreply@ss.tan90.cn"
-
+# 新用户注册获得5G（5*1024*1024*1024B) 流量
 default_traffic: 5368709120
 
+# app 名称
 app_name: "OpenMind"

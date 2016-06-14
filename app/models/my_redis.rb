@@ -2,19 +2,20 @@ require 'redis'
 
 class MyRedis 
 
-  def initialize
-    @redis = Redis.new
+  def self.current
+    @redis = Redis.current
+    self
   end
 
-  def get(key)
+  def self.get(key)
     @redis.get(key)
   end
 
-  def set(key, value)
+  def self.set(key, value)
     @redis.set(key, value)
   end
 
-  def set_key_with_expire(key, value, seconds=10800)
+  def self.set_key_with_expire(key, value, seconds=10800)
     @redis.set(key, value)
     @redis.expire(key, seconds )
   end

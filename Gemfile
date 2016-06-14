@@ -36,7 +36,7 @@ gem 'config'
 # Redis 
 gem 'redis'
 # mailgun
-# gem 'mailgun_rails'
+gem 'mailgun'
 # avastar
 gem "avatarly"
 gem "capistrano3-puma"

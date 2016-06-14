@@ -1,6 +1,6 @@
 <% case @status %>
 <% when 1 %>
-  <p style="text-align:center;font-size:1.5em;margin-top:100px;color:green">恭喜你，验证成功!请点击<a href="/user/<%= @user.user_id %>/">链接</a> 到主页</p>
+  <p style="text-align:center;font-size:1.5em;margin-top:100px;color:green">恭喜你，验证成功!请点击<a href="/user">链接</a> 到主页</p>
 <% when 0 %>
   <p style="text-align:center;font-size:1.5em;margin-top:100px;color:green">验证链接已过期或者token不正确</p> 
 <% when -1 %>

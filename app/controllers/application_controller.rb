@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   def set_params
     @params = params.permit(:id,:email,:user_name,:original,:password,:token,:content)
     @app_name = Settings.app_name
+    @redis = MyRedis.current
   end
 
   def validate_login_status
