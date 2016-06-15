@@ -4,6 +4,11 @@ class User < ActiveRecord::Base
   self.inheritance_column = 'another_type'
 
   has_one :user_token, foreign_key: :user_id
+  # validates :user_name, presence: true
+
+  def self.validate_email(email)
+    !email.nil? and !email.empty? and email[/\w+@.+/]
+  end
 
   def user_id
     "00000#{id}"[-6..-1]
