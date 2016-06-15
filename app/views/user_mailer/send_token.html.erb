@@ -5,11 +5,9 @@
   </head>
   <body style="padding:50px 50px">
     <p>亲爱的 <strong><%= @user.user_name %></strong></p>
-    <br>
-    <br>
     <p>您收到此邮件是因为您在<%= Settings.app_name %>申请了密码重置,如果不是您申请的,请忽略此邮件.</p>
     <p> 若要开始重置密码,请点击以下链接 :)</p>
     <p>请尽快在三小时之内点击<%= @url %> 重置你的密码</p>
-    <p>--<%= Settings.app_name %></p>
+    <p>-- <%= Settings.app_name %></p>
   </body>
 </html>
