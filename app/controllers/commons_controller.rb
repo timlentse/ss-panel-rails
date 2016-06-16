@@ -2,10 +2,10 @@ class CommonsController < ApplicationController
   skip_before_action :validate_login_status
 
   def welcome
-    if session[:user_id]
-      @current_user = User.find_by_id(session[:user_id])
+    if @session_token and user_id=@redis.get_session_token(@session_token)
+      @current_user = User.find_by_id(user_id.to_i)
     end
-    @index=true
+    @index = true
   end
 
 end

@@ -4,12 +4,12 @@ class AuthenticationsController < ApplicationController
 
   def login
     if request.post?
-      user = User.find_by_email(@params[:email])
-      if user and user.authenticate(@params[:password])
-        session[:user_id] = user.user_id
+      @user = User.find_by_email(@params[:email])
+      if @user and @user.authenticate(@params[:password])
+        give_session_token
         render json: {code:1,msg:"登录成功"}
-        user.update(last_check_in_time: Time.now.to_i)
-        flash[:notice] = "Welcome back #{user.user_name}!"
+        @user.update(last_check_in_time: Time.now.to_i)
+        flash[:notice] = "Welcome back #{@user.user_name}!"
       else
         render json: {code:0,msg:"邮箱或密码错误"}
       end
@@ -17,7 +17,8 @@ class AuthenticationsController < ApplicationController
   end
 
   def logout
-    session[:user_id], @current_user = nil, nil
+    delete_session_token
+    @current_user = nil
     redirect_to root_url, status: 302
   end
 
@@ -33,8 +34,8 @@ class AuthenticationsController < ApplicationController
         @user.transfer_enable = Settings.default_traffic
         @user.port = User.last.port+1
         @user.reg_ip = request.remote_ip
-        send_verify_email
         @user.save
+        send_verify_email
         generate_invite_code
         flash[:notice] = "恭喜你，注册成功"
         render json: {:code=>1,:msg=>"注册成功"}
@@ -74,37 +75,33 @@ class AuthenticationsController < ApplicationController
     if @token and @token.eql?(@params[:token])
       @user = User.find_by_email(@email)
       if @user
-        @user.update(enable: 1,is_email_verify: 1)
-        session[:user_id] = @user.user_id
-        @status=1
+        @user.update(enable: 1, is_email_verify: 1)
+        give_session_token
+        @status = 1
       else
-        @status=-1
+        @status = -1
       end
     else
-      @status=0
+      @status = 0
     end
   end
 
   private
 
   def generate_invite_code
-    5.times do |i|
-      code = SecureRandom.uuid
-      InviteCode.create(code: code, user_id: @user.id)
-    end
+    5.times{ |i| InviteCode.create(code: SecureRandom.uuid, user_id: @user.id) }
   end
 
   def send_verify_email
     token_string = SecureRandom.uuid
-    @redis.set_key_with_expire(@user.email,token_string)
+    @redis.set_verify_token(@user.email,token_string,10800)
     verify_url = "https://ss.tan90.cn/verify?email=#{@user.email}&token=#{token_string}"
     UserMailer.send_verify(@user,verify_url).deliver_now
   end
 
   def send_token_email
     token_string = SecureRandom.uuid
-    expire_at = Time.now+4.hours
-    PasswordReset.create(email: @params[:email], token: token_string, expire_at: expire_at) 
+    PasswordReset.create(email: @params[:email], token: token_string, expire_at: 4.hours.from_now) 
     token_url = "https://ss.tan90.cn/password/token/#{token_string}"
     UserMailer.send_token(@user,token_url).deliver_now
   end

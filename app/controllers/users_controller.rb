@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :init_var,:check_in?
+  before_action :init_var, :check_in?
   after_action :clear_flash
 
   def index

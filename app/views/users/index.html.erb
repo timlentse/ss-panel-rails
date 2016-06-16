@@ -139,8 +139,8 @@
             <div class="input-group">
               <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
               <span class="input-group-btn">
-                <button class="btn btn-warning btn-sm" id="btn-chat">
-                  Send
+                <button class="btn btn-warning btn-sm" id="btn-chat" onclick="submitChat()">
+                  发送
                 </button>
               </span>
             </div>
@@ -151,18 +151,3 @@
   </div>
 </div>
 <script> <%= render "area_chart.js.erb" %></script>
-<script>
-$(document).ready(function(){
-  $("#btn-chat").click(function(e){
-    e.preventDefault();
-    content = $("#btn-input").val();
-    if (content.length!=0){
-      user_name = "<%= @current_user.user_name %>";
-      email = "<%= @current_user.email %>";
-      $.post("/user/comments",{"email": email,"user_name": user_name,"content": content},function(data){
-        $("#btn-input").val('');
-      }) 
-    }
-  })
-})
-</script>

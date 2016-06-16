@@ -15,9 +15,28 @@ class MyRedis
     @redis.set(key, value)
   end
 
-  def self.set_key_with_expire(key, value, seconds=10800)
-    @redis.set(key, value)
-    @redis.expire(key, seconds )
+  def self.delete_session_token(key)
+    @redis.delete "session_#{key}"
+  end
+
+  def self.set_session_token(key,value,seconds=nil)
+    key = "session_#{key}"
+    @redis.set(key,value)
+    @redis.expire(key,seconds) if seconds
+  end
+
+  def self.get_session_token(key)
+    @redis.get "session_#{key}"
+  end
+
+  def self.set_verify_token(key,value,seconds=nil)
+    key = "verify_#{key}"
+    @redis.set(key,value)
+    @redis.expire(key,seconds) if seconds
+  end
+
+  def self.get_verify_token(key)
+    @redis.get "verify_#{key}"
   end
 
 end

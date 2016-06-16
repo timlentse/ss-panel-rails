@@ -48,3 +48,15 @@ function changeConnectPassword(){
     }
   })
 }
+
+function submitChat(){
+  content = $("#btn-input").val();
+  $("#btn-input").val('');
+  if (content.length!=0){
+    user_name = "<%= @current_user.user_name %>";
+    email = "<%= @current_user.email %>";
+    $.post("/user/comments",{"email": email,"user_name": user_name,"content": content},function(data){
+      $("#btn-input").val('');
+    }) 
+  }
+}
