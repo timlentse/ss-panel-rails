@@ -16,7 +16,7 @@ class MyRedis
   end
 
   def self.delete_session_token(key)
-    @redis.delete "session_#{key}"
+    @redis.del "session_#{key}"
   end
 
   def self.set_session_token(key,value,seconds=nil)
