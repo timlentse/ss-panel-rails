@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -9,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   protected
   def set_params
-    @params = params.permit(:id,:email,:user_name,:original,:password,:token,:content,:method,:name,:ip_address,:desc,:visable,:page)
+    @params = params.permit(:id,:email,:user_name,:original,:password,:token,:content,:method)
     @app_name = Settings.app_name
     @redis = MyRedis.current
     @session_token = cookies[:session_token]
@@ -38,7 +39,6 @@ class ApplicationController < ActionController::Base
 
   def check_in?
     @checked = Time.at(@current_user.last_get_gift_time)>Time.now-1.day
-    @checked
   end
 
   def give_session_token
@@ -50,6 +50,15 @@ class ApplicationController < ActionController::Base
   def delete_session_token
     @redis.delete_session_token(@session)
     cookies.delete :session_token
+  end
+
+  def validate_admin
+    redirect_to "/user" unless @current_user.is_admin?
+  end
+
+  def get_traffic_usage
+    @usage = (@current_user.d+@current_user.u)/@current_user.transfer_enable.to_f
+    @usage = (@usage * 100.0).round(2)
   end
 
 end

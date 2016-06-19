@@ -1,0 +1,32 @@
+<div id="wrapper">
+  <%= render 'layouts/nav' %>
+  <div id="page-wrapper">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header">新建用户</h1>
+      </div>
+    </div>
+    <div class="row">
+      <%= render "layouts/flash" %>
+      <div class="col-lg-5">
+        <%= form_for :user, url: "/admin/users" do |f| %>
+          <p>
+          <%= f.label :邮箱 %>
+          <%= f.email_field :email,class: "form-control" %>
+          </p>
+          <p>
+          <%= f.label :用户名 %>
+          <%= f.text_field :user_name,class:"form-control" %>
+          </p>
+          <p>
+          <%= f.label :密码 %>
+          <%= f.password_field :passwd,class:"form-control" %>
+          </p>
+          <p>
+          <%= f.submit "新建",class: "btn btn-info" %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

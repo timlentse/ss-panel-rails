@@ -1,0 +1,60 @@
+class Admin::UsersController < ApplicationController
+
+  before_action :validate_admin, :get_traffic_usage, :check_in?
+  before_action :set_user_params, only: [:update,:create]
+
+  def index
+    @users = User.paginate(:page=>params[:page])
+  end
+
+  def edit
+    @user = User.find_by_id(params[:id])
+    redirect_to "/404.html" and return unless @user
+  end
+
+  def update
+    @user = User.find_by_id(params[:id])
+    if @user and @user.update(@user_params)
+      redirect_to "/admin/users",notice:"修改成功!"
+    elsif @user
+      render "edit",:flash=>{:error=>@user.errors.messages}
+    else
+      render "edit",:flash=>{:error=>"用户不存在"}
+    end
+  end
+
+  def create
+    @user = User.new(@user_params)
+    @user.password = @user_params[:passwd]
+    @user.transfer_enable = Settings.default_traffic
+    @user.port = User.last.port+1
+    @user.reg_ip = request.remote_ip
+    if @user.save 
+      redirect_to "/admin/users",notice: "新建成功!"
+    else
+      flash.now[:error] = @user.errors.messages
+      render "new"
+    end
+  end
+
+  def new
+  end
+
+  def destroy
+    @user = User.find_by_id(params[:id])
+    if @user and @user.destroy
+      redirect_to "/admin/users", notice:"删除成功!"
+    elsif @user
+      redirect_to "/admin/users", :flash=>{:error=>@user.errors.messages}
+    else
+      redirect_to "/admin/users",:flash=>{:error=>"用户不存在"}
+    end
+  end
+
+  private
+
+  def set_user_params
+    @user_params = params.require(:user).permit(:user_name,:email,:passwd,:transfer_enable,:port)
+  end
+
+end

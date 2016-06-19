@@ -25,7 +25,7 @@ class AuthenticationsController < ApplicationController
   def register
     if request.post?
       render json: {code:0,msg:"邮箱格式错误"} and return unless User.validate_email(@params[:email])
-      found = User.find_by_email(@params[:email])
+      found = user.find_by_email(@params[:email])
       if found
         render json: {:code=>0,:msg=>"该邮箱已被注册"}
       else

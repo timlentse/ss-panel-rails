@@ -9,7 +9,7 @@
     <div class="row">
       <%= render "layouts/flash" %>
       <div class="col-lg-5">
-        <%= form_for @node, url: node_path do |f| %>
+        <%= form_for :node, url: admin_nodes_path do |f| %>
           <p>
           <%= f.label :节点名称 %>
           <%= f.text_field :name , class: "form-control" %>
@@ -31,7 +31,7 @@
           <%= f.select :cata, options_for_select(["公开","私有"]),{},class: "form-control"%>
           </p>
           <p>
-          <%= f.submit "保存", class:"btn btn-info" %>
+          <%= f.submit "新建", class:"btn btn-info" %>
           </p>
         <% end %>
       </div>

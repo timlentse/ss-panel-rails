@@ -8,6 +8,8 @@
     </div>
     <div class="row">
       <div class="col-lg-12">
+        <%= render "layouts/flash" %>
+        <p><a href="/admin/users/new" class="btn btn-info"><i class="fa fa-plus"></i>新建用户</a></p>
         <div class="table-responsive">
           <table class="table table-bordered table-hover table-striped">
             <thead>
@@ -32,7 +34,10 @@
                   <td><%= distance_of_time_in_words(Time.at(user.t),Time.now) %></td>
                   <td><%= distance_of_time_in_words(Time.at(user.last_get_gift_time),Time.now) %></td>
                   <td><%= user.reg_ip %></td>
-                  <td><a class='btn btn-danger'>删除</a> <a class="btn btn-info">编辑</a></td>
+                  <td>
+                    <a href="/admin/users/<%= user.id %>/edit" class="btn btn-info">编辑</a>
+                    <%= link_to "删除","/admin/users/#{user.id}", method:"delete", class:'btn btn-danger' %>
+                  </td>
                 </tr>
               <% end %>
             </tbody>

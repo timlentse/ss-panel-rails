@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
 
-  before_action :init_var, :check_in?
+  before_action :get_traffic_usage, :check_in?
   after_action :clear_flash
 
-  def index
+  def home
     @comments = fetch_all_comments
     @nodes_count = Node.where(:cata=>1).count
     @comments_count = UserComment.count
@@ -11,7 +11,11 @@ class UsersController < ApplicationController
   end
 
   def node
-    @nodes = Node.where(:cata=>1)
+    if @current_user.is_offer? or @current_user.is_admin?
+      @nodes = Node.all
+    else
+      @nodes = Node.where(cata:1)
+    end
   end
 
   def profile
@@ -24,7 +28,7 @@ class UsersController < ApplicationController
     @traffics = UserTrafficLog.where(user_id: @current_user.id).limit(10)
   end
 
-  def edit
+  def change
   end
 
   def invite
@@ -91,11 +95,6 @@ class UsersController < ApplicationController
     else
       return distance_of_time_in_words(Time.at(int_time),Time.now)
     end
-  end
-
-  def init_var
-    @usage = (@current_user.d+@current_user.u)/@current_user.transfer_enable.to_f
-    @usage = (@usage * 100.0).round(2)
   end
 
   def clear_flash

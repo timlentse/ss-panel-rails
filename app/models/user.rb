@@ -4,7 +4,9 @@ class User < ActiveRecord::Base
   self.inheritance_column = 'another_type'
 
   has_one :user_token, foreign_key: :user_id
-  # validates :user_name, presence: true
+
+  validates :user_name, presence:{:message=>"用户名不能为空"}
+  validates :email, presence: {:message=>"邮箱不能为空"}, uniqueness: {:message=>"邮箱已被注册"}
 
   def self.validate_email(email)
     !email.nil? and !email.empty? and email[/\w+@.+/]
@@ -24,6 +26,10 @@ class User < ActiveRecord::Base
 
   def is_admin?
     is_admin==1
+  end
+
+  def is_offer?
+    type==2
   end
 
   def avatar

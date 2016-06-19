@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'nodes/create'
-
-  get 'nodes/edit'
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -20,24 +16,22 @@ Rails.application.routes.draw do
   post '/password/token/:token'=>'authentications#password_token'
   get '/verify'=>"authentications#verify"
 
-  get '/user' => 'users#index'
+  get '/user' => 'users#home'
   get '/user/node' => 'users#node'
   get '/user/profile' => 'users#profile'
   get '/user/traffic' => 'users#traffic'
-  get '/user/edit' => 'users#edit'
+  get '/user/edit' => 'users#change'
   get '/user/invite' => 'users#invite'
   post '/user/comments'=>'users#comments'
   post '/user/password'=>'users#change_password'
   post '/user/connectPassword'=>'users#change_connect_password'
 
   post '/checkin'=>'users#check_in'
-
-  get '/admins'=>'admins#admin'
-  namespace :admins do 
-    get 'node'
+  get '/admin'=>"admin#index"
+  namespace :admin do
     get 'traffic'
-    get 'user'
     get 'configuration'
+    resources :users
+    resources :nodes
   end
-  resources :nodes
 end
