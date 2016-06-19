@@ -21,7 +21,7 @@ class AdminsController < ApplicationController
   end
 
   def user
-    @users = User.limit(20)
+    @users = User.paginate(:page=>@params[:page])
   end
 
   def configuration

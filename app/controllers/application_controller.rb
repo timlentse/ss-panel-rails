@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   protected
   def set_params
-    @params = params.permit(:id,:email,:user_name,:original,:password,:token,:content)
+    @params = params.permit(:id,:email,:user_name,:original,:password,:token,:content,:method,:name,:ip_address,:desc,:visable,:page)
     @app_name = Settings.app_name
     @redis = MyRedis.current
     @session_token = cookies[:session_token]

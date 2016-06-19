@@ -10,7 +10,7 @@
   text-align:center;
 }
 #index .info{
-  margin-top:20%;
+  padding-top:20%;
 }
 #index .info a {
   padding:10px 10px;
@@ -69,7 +69,7 @@ a#login{
   color:#555;
 }
 .footer{ 
-  position:fixed;
+  /* position:fixed; */
   bottom:0;
   width:100%; 
   height:50px;

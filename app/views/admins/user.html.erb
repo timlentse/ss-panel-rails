@@ -37,6 +37,10 @@
               <% end %>
             </tbody>
           </table>
+          <div class="flickr_pagination">
+            <%= will_paginate @users, :container => false %>
+          </div>
+
         </div>
       </div>
     </div>

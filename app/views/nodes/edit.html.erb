@@ -1,0 +1,40 @@
+<div id="wrapper">
+  <%= render 'layouts/nav' %>
+  <div id="page-wrapper">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header">新建节点</h1>
+      </div>
+    </div>
+    <div class="row">
+      <%= render "layouts/flash" %>
+      <div class="col-lg-5">
+        <%= form_for @node, url: node_path do |f| %>
+          <p>
+          <%= f.label :节点名称 %>
+          <%= f.text_field :name , class: "form-control" %>
+          </p>
+          <p>
+          <%= f.label :节点描述 %>
+          <%= f.text_area :info, class: "form-control" %>
+          </p>
+          <p>
+          <%= f.label :节点ip地址 %>
+          <%= f.text_field :server, class: "form-control" %>
+          </p>
+          <p>
+          <%= f.label :加密方式 %>
+          <%= f.select :method, options_for_select(["rc4-md5","aes-256-cfb"]),{},class: 'form-control'%>
+          </p>
+          <p>
+          <%= f.label :私密性 %>
+          <%= f.select :cata, options_for_select(["公开","私有"]),{},class: "form-control"%>
+          </p>
+          <p>
+          <%= f.submit "保存", class:"btn btn-info" %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
