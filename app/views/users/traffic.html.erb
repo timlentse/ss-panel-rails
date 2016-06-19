@@ -31,7 +31,7 @@
                       <% @traffics.each do |traffic| %>
                         <tr>
                           <td><%= traffic.log_at.strftime("%Y-%m-%d") %></td>
-                          <td><%= k_m_g(traffic.traffic) %></td>
+                          <td><%= m_g(traffic.traffic) %></td>
                         </tr>
                       <% end %>
                     </tbody>

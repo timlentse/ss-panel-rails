@@ -4,12 +4,12 @@ $(function() {
     data:[
       <% @traffics.each do |traffic| %>
         {
-          period: <%= traffic.log_at.strftime("%Y-%m-%d") %>,
-          traffic: <%= traffic.traffic %>
-      },
+          date:'<%= traffic.log_at.strftime("%Y-%m-%d") %>',
+          traffic:'<%= traffic.traffic %>'
+        },
     <% end %>
     ],
-    xkey: 'period',
+    xkey: 'date',
     ykeys: ['traffic'],
     labels: ['traffic'],
     pointSize: 2,

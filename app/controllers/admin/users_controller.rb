@@ -47,14 +47,15 @@ class Admin::UsersController < ApplicationController
     elsif @user
       redirect_to "/admin/users", :flash=>{:error=>@user.errors.messages}
     else
-      redirect_to "/admin/users",:flash=>{:error=>"用户不存在"}
+      redirect_to "/admin/users", :flash=>{:error=>"用户不存在"}
     end
   end
 
   private
 
   def set_user_params
-    @user_params = params.require(:user).permit(:user_name,:email,:passwd,:transfer_enable,:port)
+    @user_params = params.require(:user).permit(:user_name,:email,:passwd,:transfer_enable,:port,:pass)
+    @user_params[:pass] = Digest::SHA256.hexdigest(@user_params[:pass]) if @user_params[:pass]
   end
 
 end
