@@ -71,7 +71,7 @@ class AuthenticationsController < ApplicationController
 
   def verify
     @email = @params[:email]
-    @token = @redis.get(@email)
+    @token = @redis.get_verify_token(@email)
     if @token and @token.eql?(@params[:token])
       @user = User.find_by_email(@email)
       if @user
