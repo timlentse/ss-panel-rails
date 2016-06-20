@@ -25,7 +25,7 @@ class AuthenticationsController < ApplicationController
   def register
     if request.post?
       render json: {code:0,msg:"邮箱格式错误"} and return unless User.validate_email(@params[:email])
-      found = user.find_by_email(@params[:email])
+      found = User.find_by_email(@params[:email])
       if found
         render json: {:code=>0,:msg=>"该邮箱已被注册"}
       else
@@ -96,14 +96,14 @@ class AuthenticationsController < ApplicationController
     token_string = SecureRandom.uuid
     @redis.set_verify_token(@user.email,token_string,10800)
     verify_url = "https://ss.tan90.cn/verify?email=#{@user.email}&token=#{token_string}"
-    UserMailer.send_verify(@user,verify_url).deliver_now
+    UserMailer.send_verify(@user,verify_url).deliver_later
   end
 
   def send_token_email
     token_string = SecureRandom.uuid
     PasswordReset.create(email: @params[:email], token: token_string, expire_at: 4.hours.from_now) 
     token_url = "https://ss.tan90.cn/password/token/#{token_string}"
-    UserMailer.send_token(@user,token_url).deliver_now
+    UserMailer.send_token(@user,token_url).deliver_later
   end
 
 end
