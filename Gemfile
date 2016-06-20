@@ -35,6 +35,8 @@ gem "avatarly"
 gem "capistrano3-puma"
 # paginate
 gem 'will_paginate', '~> 3.1.0'
+# use whenever to handle corn jobs
+gem 'whenever'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
