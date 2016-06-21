@@ -208,6 +208,7 @@ DEPENDENCIES
   mailgun
   mysql2 (= 0.3.18)
   pry
+  puma
   rails (= 4.2.3)
   redis
   sass-rails (~> 5.0)

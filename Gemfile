@@ -35,6 +35,8 @@ gem "avatarly"
 gem "capistrano3-puma"
 # paginate
 gem 'will_paginate', '~> 3.1.0'
+# puma
+gem 'puma'
 # use whenever to handle corn jobs
 gem 'whenever'
 group :development, :test do
