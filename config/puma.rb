@@ -4,8 +4,8 @@ workers 1
 # Min and Max threads per worker
 threads 1, 6
 
-app_dir = File.expand_path("../..", __FILE__)
-shared_dir = "#{app_dir}/shared"
+app_dir = "path-to-your-rail-dir"  # /home/ss-panel/current
+shared_dir = "path-to-shared-dir" # /home/ss-panel/shared
 
 # Default to production
 rails_env = ENV['RAILS_ENV'] || "production"
