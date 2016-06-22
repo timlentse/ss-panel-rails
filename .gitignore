@@ -17,7 +17,7 @@
 /tmp
 /log
 /test
-/vendor/ruby
+/vendor/bundle
 
 config/settings.local.yml
 config/settings/*.local.yml
