@@ -5,20 +5,21 @@ This is a rails copy of [ss-panel](https://github.com/orvice/ss-panel). Powered 
 * rails 4.2+
 * mysql
 * redis
+
 ### Install
 
-#### clone repository
+#### 1.clone repository
 
 ```shell
 $ git clone git@github.com:timlentse/ss-panel-rails.git
 ```
-#### install gems
+#### 2.install gems
 
 ```shell
 $ cd ss-panel-rails
 $ bundle install --path=vendor/bundle
 ```
-#### load database and tables
+#### 3.load database and tables
 import sql file in `connfig/db_init.sql`  to mysql
 
 ```sql
@@ -42,6 +43,5 @@ Go to app root directory and type:
 $ rails s
 
 ```
-
 ### LICENSE
 MIT

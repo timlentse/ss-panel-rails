@@ -3,3 +3,6 @@ default_traffic: 5368709120
 
 # App 名称
 app_name: "OpenMind"
+
+# 初始端口
+init_port: 1025

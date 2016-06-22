@@ -10,8 +10,10 @@ class AuthenticationsController < ApplicationController
         render json: {code:1,msg:"登录成功"}
         @user.update(last_check_in_time: Time.now.to_i)
         flash[:notice] = "Welcome back #{@user.user_name}!"
+      elsif @user
+        render json: {code:0,msg:"密码错误"}
       else
-        render json: {code:0,msg:"邮箱或密码错误"}
+        render json: {code:0,msg:"邮箱没有注册"}
       end
     end
   end
@@ -32,13 +34,16 @@ class AuthenticationsController < ApplicationController
         @user = User.new(user_name: @params[:user_name], email: @params[:email], passwd: @params[:password])
         @user.password = @params[:password]
         @user.transfer_enable = Settings.default_traffic
-        @user.port = User.last.port+1
+        @user.port = User.last.nil? ? Settings.init_port : User.last.port+1
         @user.reg_ip = request.remote_ip
-        @user.save
-        send_verify_email
-        generate_invite_code
-        flash[:notice] = "恭喜你，注册成功"
-        render json: {:code=>1,:msg=>"注册成功"}
+        if @user.save
+          send_verify_email
+          generate_invite_code
+          flash[:notice] = "恭喜你，注册成功"
+          render json: {:code=>1,:msg=>"注册成功"}
+        else
+          render json: {code:0,:msg=>"注册失败"}
+        end
       end
     end
   end
