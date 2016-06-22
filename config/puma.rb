@@ -1,11 +1,13 @@
+# Working dir
+directory "path-to-your-rails-dir" # /home/ss-panel/current
+app_dir = "path-to-your-rail-dir"  # /home/ss-panel/current
+shared_dir = "path-to-shared-dir" # /home/ss-panel/shared
+
 # Change to match your CPU core count
 workers 1
 
 # Min and Max threads per worker
 threads 1, 6
-
-app_dir = "path-to-your-rail-dir"  # /home/ss-panel/current
-shared_dir = "path-to-shared-dir" # /home/ss-panel/shared
 
 # Default to production
 rails_env = ENV['RAILS_ENV'] || "production"
@@ -23,7 +25,6 @@ state_path "#{shared_dir}/tmp/pids/puma.state"
 activate_control_app
 
 on_worker_boot do
-  require "active_record"
-  ActiveRecord::Base.connection.disconnect! rescue ActiveRecord::ConnectionNotEstablished
+  ActiveRecord::Base.connection_pool.disconnect! rescue ActiveRecord::ConnectionNotEstablished
   ActiveRecord::Base.establish_connection(YAML.load_file("#{app_dir}/config/database.yml")[rails_env])
 end
