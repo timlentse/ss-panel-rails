@@ -17,19 +17,15 @@
     <![endif]-->
     <%= csrf_meta_tags %>
   </head>
-  <% if @index %>
-    <body class="index">
-    <% else %>
-      <body>
-      <% end %>
+  <body>
 
-      <%= yield %>
+    <%= yield %>
 
-      <%= render 'layouts/footer' %>
-      <%= render 'layouts/site_analytics' %>
-      </body>
+    <%= render 'layouts/footer' %>
+    <%= render 'layouts/site_analytics' %>
+  </body>
 
-      <script>
+  <script>
 function checkIn(){
   $.post("/checkin",{'a':'s'},function(data){
     if (data["code"]==1){
@@ -40,5 +36,5 @@ function checkIn(){
     }
   });
 }
-      </script>
+  </script>
 </html>

@@ -1,4 +1,5 @@
 function login(){
+  $(".error").remove();
   email = $("#email").val();
   password = $("#password").val();
   $.post("/login", {"email":email, "password":password},function(data){
@@ -11,6 +12,7 @@ function login(){
   })
 }
 function register(){
+  $(".error").remove();
   user_name = $("#user_name").val();
   email = $("#email").val();
   password = $("#password").val();
@@ -28,6 +30,7 @@ function register(){
   }
 }
 function resetPassword(){
+  $(".error").remove();
   email = $("#email").val();
   $.post("/password/reset", {"email":email},function(data){
     if (data["code"]==1){
@@ -38,6 +41,7 @@ function resetPassword(){
   })
 }
 function submitReset(){
+  $(".error").remove();
   password = $("#password").val();
   current_url = window.location.href;
   $.post(current_url,{"password": password},function(data){

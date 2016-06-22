@@ -2,10 +2,12 @@ $(function() {
 
   var data = [{
     label: "已用",
-    data: <%= @usage %>
-}, {
-  label: "未用",
-  data: <%= 100-@usage %>
+    data: <%= @usage %>,
+    color: "#d9534f"
+  }, {
+    label: "未用",
+    data: <%= 100-@usage %>,
+    color: "#5cb85c"
 
   }];
 

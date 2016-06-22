@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
       <span class="sr-only">Toggle navigation</span>
@@ -84,9 +84,9 @@
           <a href="/user/invite"><i class="fa fa-group"></i>邀请好友</a>
         </li>
         <% if @current_user.is_admin? %>
-          <li class="">
+          <li>
             <a href="#"><i class="fa fa-navicon"></i>管理面板<span class="fa arrow"></span></a>
-            <ul class="nav nav-second-level collapse in" aria-expanded="true">
+            <ul class="nav nav-second-level">
               <li>
                 <a href="/admin">管理中心</a>
               </li>

@@ -7,6 +7,7 @@ function insertSuccess(btn,msg){
     html_content = '<i class="fa fa-check"></i>'+msg;
     $(".success").html(html_content);
   }
+  $(".success").fadeOut(5000,function() { $(this).remove(); });
 }
 
 function insertError(btn,msg){
@@ -21,6 +22,7 @@ function insertError(btn,msg){
 }
 
 function changePassword(){
+  $(".error").remove();
   original_password = $("#original_password").val();
   password = $("#password").val();
   if ($("#password_comfirm").val()==password){
@@ -38,6 +40,7 @@ function changePassword(){
 }
 
 function changeConnectPassword(){
+  $(".error").remove();
   password = $("#connect_password").val();
   $.post("/user/connectPassword", {"password":password},function(data){
     if (data["code"]==1){
