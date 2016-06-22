@@ -1,13 +1,27 @@
-body {
+body{
   padding-top: 50px;  
   background-color:#fff;
 }
 .collapse.in{
   background-color:#f8f8f8;
 }
-.index{
-  background: url(http://7xvenn.com1.z0.glb.clouddn.com/bg.png);
-  background-color: rgba(0,0,0,0.1);
+@media (min-width: 768px){
+  .intro-heading{
+    font-size:70px;
+  }
+}
+@media (max-width: 768px){
+  .intro-heading{
+    font-size:30px;
+  }
+}
+.intro-heading{
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 75px;
+  margin-bottom: 50px;
+  padding-top:10%;
 }
 #index .panel-heading{
   text-align: center;
@@ -17,7 +31,7 @@ body {
   text-align:center;
 }
 #index .info{
-  padding-top:20%;
+  padding-top:10%;
 }
 #index .info a {
   padding:10px 10px;
@@ -34,7 +48,12 @@ body {
 #index .index-desc{
   margin-top:20px;
   font-size:1.1em;
-  color:#fff;
+  font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: none;
+  font-style: italic;
+  font-weight: 400;
+  margin-bottom: 75px;
+  color:#777;
 }
 #side-menu>li>a>i {
   margin-right:7px;
@@ -108,4 +127,19 @@ a#login{
   border-radius:0px;
   margin-left:20px;
   margin-right:20px;
+}
+.node-info{
+  padding-top:20px;
+  height:100px;
+  display:block;
+  background-color:#eee;
+  text-align:center;
+}
+.node-info p{
+  padding-top:10px;
+  font-size:1.1em;
+  color:#777;
+}
+.submit-after{
+  content: "ss";
 }

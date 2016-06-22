@@ -7,40 +7,46 @@
       </div>
     </div>
     <div class="row">
-      <% @nodes.each do |node| %>
-        <div class="col-lg-6">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <%= node.name %>
-            </div>
-            <div class="panel-body">
-              <div class="table-responsive">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>名称</th>
-                      <th><%= node.info %></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>IP</td>
-                      <td><%= node.server %></td>
-                    </tr>
-                    <tr>
-                      <td>加密方式</td>
-                      <td><%= node.method %></td>
-                    </tr>
-                    <tr>
-                      <td>流量比率</td>
-                      <td><%= node.traffic_rate %></td>
-                    </tr>
-                  </tbody>
-                </table>
+      <% if @nodes.empty? %>
+        <div class="node-info">
+          <p><i class="fa fa-warning"></i> 站长还没有新建节点</p>
+        </div>
+      <% else %>
+        <% @nodes.each do |node| %>
+          <div class="col-lg-6">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <%= node.name %>
+              </div>
+              <div class="panel-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>名称</th>
+                        <th><%= node.info %></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>IP</td>
+                        <td><%= node.server %></td>
+                      </tr>
+                      <tr>
+                        <td>加密方式</td>
+                        <td><%= node.method %></td>
+                      </tr>
+                      <tr>
+                        <td>流量比率</td>
+                        <td><%= node.traffic_rate %></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
   </div>
