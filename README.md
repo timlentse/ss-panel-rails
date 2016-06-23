@@ -38,6 +38,7 @@ mailgun_password: "mailgun smtp setting password"
 mailgun_user_name: "username of mailgun smtp"
 ```
 * regeister a mailgun account [here](http://www.mailgun.com) if you use mailgun to send email
+
 ### Time to playaround
 Go to app root directory and type:
 ```shell
