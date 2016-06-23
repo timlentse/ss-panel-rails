@@ -8,6 +8,10 @@ class UsersController < ApplicationController
     @nodes_count = Node.where(:cata=>1).count
     @comments_count = UserComment.count
     @traffics = UserTrafficLog.where(user_id: @current_user.id).limit(10)
+    @config = SiteConfig.find_by_key("user-index")
+    if @config
+      flash.now[:announcement] = @config.value
+    end
   end
 
   def node

@@ -128,3 +128,14 @@ CREATE TABLE `user_traffic_logs` (
   PRIMARY KEY (`id`)
 
 ) ENGINE=InnoDB AUTO_INCREMENT=2400 DEFAULT CHARSET=utf8;
+
+-- Create syntax for TABLE 'site_configs'
+CREATE TABLE `site_configs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `key` varchar(128) NOT NULL,
+  `value` text NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
