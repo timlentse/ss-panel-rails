@@ -1,5 +1,5 @@
 ### README
-This is a rails copy of [ss-panel](https://github.com/orvice/ss-panel). Powered by [SB Admin 2 Theme](http://startbootstrap.com/template-overviews/sb-admin-2/)
+This is a rails copy of [ss-panel](https://github.com/orvice/ss-panel). Theme by [SB Admin 2 Theme](http://startbootstrap.com/template-overviews/sb-admin-2/)
 
 ### ScreenShots
 ![alt tag](https://raw.githubusercontent.com/timlentse/ss-panel-rails/master/public/home.png)
@@ -82,6 +82,12 @@ Go to app root directory and type:
 $ rails s
 ```
 open browser and visit [http://localhost:3000](http://localhost:3000)
+
+### Contribute
+
+* fork the repository
+* add new features and commit
+* pull request
 
 ### wiki
 see how to integrate you rails using nginx and puma [wiki](https://github.com/timlentse/ss-panel-rails/wiki)
