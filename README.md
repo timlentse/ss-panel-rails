@@ -1,5 +1,9 @@
 ### README
 This is a rails copy of [ss-panel](https://github.com/orvice/ss-panel). Powered by [SB Admin 2 Theme](http://startbootstrap.com/template-overviews/sb-admin-2/)
+
+### ScreenShots
+[!alt](https://github.com/timlentse/ss-panel-rails/blob/master/public/home.png)
+[!alt](https://github.com/timlentse/ss-panel-rails/blob/master/public/index.png)
 ### Requirements
 * ruby 2.2+
 * rails 4.2+
