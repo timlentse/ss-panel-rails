@@ -3,13 +3,8 @@ SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
--- Create user and database
+-- Create database
 create database `sspanel_db`;
-create user 'ss-panel'@'localhost' identified by 'ss-panel-passwd!@#';
-create user 'ss-panel'@'%' identified by 'ss-panel-passwd!@#';
-grant all privileges on sspanel_db.* to 'ss-panel'@'localhost';
-grant all privileges on sspanel_db.* to 'ss-panel'@'%';
-
 use sspanel_db;
 
 -- Create syntax for TABLE 'email_verifies'
