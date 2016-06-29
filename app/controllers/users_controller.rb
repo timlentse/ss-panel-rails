@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :get_traffic_usage, :check_in?
-  after_action :clear_flash
+  after_action :clear_flash, only: [:home]
 
   def home
     @comments = fetch_all_comments
@@ -40,11 +40,10 @@ class UsersController < ApplicationController
   end
 
   def comments
-    @comment = UserComment.new(user_name: @current_user.user_name,email:@current_user.email)
+    @comment = UserComment.new(user_id:@current_user.id,user_name: @current_user.user_name,avatar:@current_user.avatar.url(:thumb))
     @comment.content = @params[:content]
     if @comment.save
       @comments = fetch_all_comments
-      # render json: {code:1,data:@comments}
       render 'comments.js.erb'
     else
       render json: {code:0,data:[]}
@@ -84,12 +83,25 @@ class UsersController < ApplicationController
     end
   end
 
+  def avatar
+    if user_params and @current_user.update(avatar:user_params[:avatar])
+      update_comments_avatar
+      redirect_to "/user/profile", notice: "头像更改成功"
+    elsif user_params
+      flash.now[:error] = "更改头像失败:#{@current_user.errors.messages[:avatar]}"
+      render 'profile'
+    else
+      flash.now[:error] = "更改头像失败:请选择文件"
+      render 'profile'
+    end
+  end
+
   private
 
   def fetch_all_comments
     UserComment.all.map do |comment|
       comment_time = distance_of_time_in_words(comment.created_at,Time.now)
-      {content: comment.content,user_name: comment.user_name, avatar: get_avatar(comment.email),time: comment_time }
+      {content: comment.content,user_name: comment.user_name, avatar: comment.avatar,time: comment_time }
     end
   end
 
@@ -103,6 +115,16 @@ class UsersController < ApplicationController
 
   def clear_flash
     flash[:notice] = nil
+  end
+
+  def user_params
+    params[:user].nil? ? nil : params.require(:user).permit(:avatar)
+  end
+
+  def update_comments_avatar
+    @current_user.user_comments.find_each do |comment|
+      comment.update(avatar: @current_user.avatar.url(:thumb))
+    end
   end
 
 end

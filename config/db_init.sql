@@ -28,7 +28,7 @@ CREATE TABLE `invite_codes` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
 
-) ENGINE=InnoDB AUTO_INCREMENT=6021 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- Create syntax for TABLE 'nodes'
 CREATE TABLE `nodes` (
@@ -44,7 +44,7 @@ CREATE TABLE `nodes` (
   `offset` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- Create syntax for TABLE 'password_resets'
 CREATE TABLE `password_resets` (
@@ -54,7 +54,7 @@ CREATE TABLE `password_resets` (
   `expire_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
 
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- Create syntax for TABLE 'user'
 CREATE TABLE `user` (
@@ -66,8 +66,8 @@ CREATE TABLE `user` (
   `t` int(11) NOT NULL DEFAULT '0',
   `u` bigint(20) NOT NULL DEFAULT '0',
   `d` bigint(20) NOT NULL DEFAULT '0',
-  `transfer_enable` bigint(20) NOT NULL DEFAULT '5368709120',
-  `port` int(11) NOT NULL,
+  `transfer_enable` bigint(20) NOT NULL,
+  `port` int(11) NOT NULL DEFAULT '1025', 
   `switch` tinyint(4) NOT NULL DEFAULT '1',
   `enable` tinyint(4) NOT NULL DEFAULT '1',
   `type` tinyint(4) NOT NULL DEFAULT '1',
@@ -81,25 +81,29 @@ CREATE TABLE `user` (
   `expire_time` int(11) NOT NULL DEFAULT '0',
   `method` varchar(64) NOT NULL DEFAULT 'rc4-md5',
   `is_email_verify` tinyint(4) NOT NULL DEFAULT '0',
+  `avatar` varchar(256) DEFAULT '',
+  `avatar_file_name` varchar(50) DEFAULT '',
+  `avatar_content_type` varchar(50) DEFAULT 'image/jpg',
+  `avatar_file_size` int(11) DEFAULT NULL,
   `reg_ip` varchar(128) NOT NULL DEFAULT '127.0.0.1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `ux_port` (`port`)
 
-) ENGINE=InnoDB AUTO_INCREMENT=1270 DEFAULT CHARSET=utf8;
-
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 -- Create syntax for TABLE 'user_comments'
 CREATE TABLE `user_comments` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
   `content` varchar(256) NOT NULL DEFAULT '',
-  `email` varchar(50) NOT NULL DEFAULT '',
   `user_name` varchar(50) NOT NULL DEFAULT '',
+  `avatar` varchar(256) NOT NULL DEFAULT '',
   `updated_at` datetime NOT NULL,
   `created_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `ix_user_id` (`user_id`)
 
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
-
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 -- Create syntax for TABLE 'user_tokens'
 CREATE TABLE `user_tokens` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -122,7 +126,7 @@ CREATE TABLE `user_traffic_logs` (
   `log_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
 
-) ENGINE=InnoDB AUTO_INCREMENT=2400 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- Create syntax for TABLE 'site_configs'
 CREATE TABLE `site_configs` (
@@ -133,4 +137,4 @@ CREATE TABLE `site_configs` (
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
 
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

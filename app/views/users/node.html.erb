@@ -19,29 +19,35 @@
                 <%= node.name %>
               </div>
               <div class="panel-body">
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>名称</th>
-                        <th><%= node.info %></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>IP</td>
-                        <td><%= node.server %></td>
-                      </tr>
-                      <tr>
-                        <td>加密方式</td>
-                        <td><%= node.method %></td>
-                      </tr>
-                      <tr>
-                        <td>流量比率</td>
-                        <td><%= node.traffic_rate %></td>
-                      </tr>
-                    </tbody>
-                  </table>
+                <div class="col-lg-6">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>名称</th>
+                          <th><%= node.info %></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>IP</td>
+                          <td><%= node.server %></td>
+                        </tr>
+                        <tr>
+                          <td>加密方式</td>
+                          <td><%= node.method %></td>
+                        </tr>
+                        <tr>
+                          <td>流量比率</td>
+                          <td><%= node.traffic_rate %></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <p>手机客户端扫描二维码生成配置文件</p>
+                  <div id="node<%=node.id%>"></div>
                 </div>
               </div>
             </div>
@@ -51,3 +57,14 @@
     </div>
   </div>
 </div>
+<script>
+<% @nodes.each do |node| %>
+  <% url = base64_ss_uri(node.method,node.server) %>
+  $("#node<%=node.id%>").qrcode({
+    render: "table",
+    text: "<%= url %>",
+    width: 200,
+    height: 200
+  });    
+    <% end %>
+</script>

@@ -7,7 +7,7 @@
       <span class="icon-bar"></span>
     </button>
     <a class="navbar-brand" href="/" style="padding-top:0px;">
-      <img src="/logo.png" style="text-align:center"/>
+      <img src="/logo.png"/>
     </a>
   </div>
   <ul class="nav navbar-top-links navbar-right">
@@ -48,7 +48,8 @@
     </li>
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-        <i class="fa fa-user fa-fw"></i><i class="fa fa-caret-down"></i>
+        <img class="avatar" src="<%= @current_user.avatar.url(:thumb) %>"/>
+        <i class="fa fa-caret-down"></i>
       </a>
       <ul class="dropdown-menu dropdown-user">
         <li><a href="/user/profile"><i class="fa fa-user fa-fw"></i>用户中心</a>

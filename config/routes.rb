@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   post '/user/comments'=>'users#comments'
   post '/user/password'=>'users#change_password'
   post '/user/connectPassword'=>'users#change_connect_password'
+  patch '/user/avatar'=>'users#avatar'
 
   post '/checkin'=>'users#check_in'
   get '/admin'=>"admin#index"

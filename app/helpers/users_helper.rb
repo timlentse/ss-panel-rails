@@ -21,4 +21,9 @@ module UsersHelper
       return "#{(total/1024.0/1024.0).round(2)}GB"
     end
   end
+
+  # 生成二维码链接
+  def base64_ss_uri(method,ip)
+    "ss://"+Base64.urlsafe_encode64("#{method}:#{@current_user.passwd}@#{ip}:#{@current_user.port}")
+  end
 end

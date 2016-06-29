@@ -32,7 +32,7 @@ class AuthenticationsController < ApplicationController
         render json: {:code=>0,:msg=>"该邮箱已被注册"}
       else
         @user = User.new(user_name: @params[:user_name], email: @params[:email], passwd: @params[:password])
-        @user.password = @params[:password]
+        @user.password=@params[:password]
         @user.transfer_enable = Settings.default_traffic
         @user.port = User.last.nil? ? Settings.init_port : User.last.port+1
         @user.reg_ip = request.remote_ip
@@ -65,9 +65,12 @@ class AuthenticationsController < ApplicationController
       @token = PasswordReset.find_by_token(@params[:token])
       if @token and @token.expire_at>Time.now
         @user = User.find_by_email(@token.email)
-        @user.password = @params[:password]
-        @user.save
-        render json: {code:1,msg:"密码重置成功"}
+        @user.password=@params[:password]
+        if @user.save
+          render json: {code:1,msg:"密码重置成功"}
+        else
+          render json: {code:0,msg:"密码重置失败"}
+        end
       else
         render json: {code:0,msg:"token错误或已过期"}
       end

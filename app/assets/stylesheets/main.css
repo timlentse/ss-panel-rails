@@ -2,6 +2,12 @@ body{
   padding-top: 50px;  
   background-color:#fff;
 }
+.navbar-top-links li a{
+  padding:10px;
+}
+.avatar{
+  border-radius:10%;
+}
 .collapse.in{
   background-color:#f8f8f8;
 }

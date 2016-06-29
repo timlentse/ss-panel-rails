@@ -29,3 +29,6 @@ Capfile
 
 # Ignore database.yml file
 config/database.yml
+
+# Ignore avatar
+public/system

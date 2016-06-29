@@ -30,8 +30,8 @@ gem 'config'
 gem 'redis'
 # Use mailgun to send email
 gem 'mailgun'
-# Use avastar
-gem "avatarly"
+# Use paperclip for avatar
+gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 # paginate
 gem 'will_paginate', '~> 3.1.0'
 # Use puma as rails server
