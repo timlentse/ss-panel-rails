@@ -19,12 +19,24 @@ $ git clone git@github.com:timlentse/ss-panel-rails.git
 ```
 #### 2. install gems
 
+Your machine should have `ruby` installed. If not, see [here](https://www.ruby-lang.org/en/) for installation guide.
+
+Once `ruby` installed. type:
+
 ```shell
-$ cd ss-panel-rails
+$ sudo gem install bundler
+```
+
+In repository root directory, type the following to install dependencies.
+
+```shell
+# run this command under 'ss-panel-rails'
+
 $ bundle install --path=vendor/bundle
 ```
+
 #### 3. load database and tables
-we use `mysql` as database for rails. Import sql file in `connfig/db_init.sql`  to mysql
+We use `mysql` as database for rails. Import sql file in `connfig/db_init.sql`  to mysql
 
 ```sql
 mysql> source `absolute path of db_init.sql `;
@@ -68,11 +80,15 @@ All private setting are stored in file `config/settings.local.yml`. Create a fil
 ```ruby
 mailer: :mailgun # set to :smtp if you don't use mailgun
 email_sender: "noreply@example.com" # default send from
+
 # mailgun setting
 mailgun_api_key: "you mailgun api key"
 mailgun_domain: "you mailgun domain"
 mailgun_password: "mailgun smtp setting password"
 mailgun_user_name: "username of mailgun smtp"
+
+# string for avatar URI Obfuscation
+hash_secret: "hash-secret-for-paperclip"
 ```
 * regeister a mailgun account [here](http://www.mailgun.com) if you use mailgun to send email
 
