@@ -41,7 +41,7 @@ class UsersController < ApplicationController
 
   def comments
     @comment = UserComment.new(user_id:@current_user.id,user_name: @current_user.user_name,avatar:@current_user.avatar.url(:thumb))
-    @comment.content = @params[:content]
+    @comment.content = user_params[:content]
     if @comment.save
       @comments = fetch_all_comments
       render 'comments.js.erb'
@@ -62,8 +62,8 @@ class UsersController < ApplicationController
   end
 
   def change_password
-    if @current_user.authenticate(@params[:original])
-      @current_user.password=@params[:password]
+    if @current_user.authenticate(user_params[:original])
+      @current_user.password=user_params[:password]
       if @current_user.save
         render json: {code: 1, msg:"修改成功"}
       else
@@ -75,7 +75,7 @@ class UsersController < ApplicationController
   end
 
   def change_connect_password
-    @current_user.passwd = @params[:password]
+    @current_user.passwd = user_params[:password]
     if @current_user.save
       render json: {code: 1, msg: "修改成功"}
     else
@@ -84,10 +84,10 @@ class UsersController < ApplicationController
   end
 
   def avatar
-    if user_params and @current_user.update(avatar:user_params[:avatar])
+    if avatar_params and @current_user.update(avatar:avatar_params[:avatar])
       update_comments_avatar
       redirect_to "/user/profile", notice: "头像更改成功"
-    elsif user_params
+    elsif avatar_params
       flash.now[:error] = "更改头像失败:#{@current_user.errors.messages[:avatar]}"
       render 'profile'
     else
@@ -95,6 +95,17 @@ class UsersController < ApplicationController
       render 'profile'
     end
   end
+
+  def destroy
+    if @current_user.destroy
+      delete_session_token
+      @current_user = nil
+      redirect_to "/", notice:"账号注销成功!"
+    else
+      redirect_to "/user", :flash=>{:error=>@user.errors.messages}
+    end
+  end
+
 
   private
 
@@ -117,7 +128,7 @@ class UsersController < ApplicationController
     flash[:notice] = nil
   end
 
-  def user_params
+  def avatar_params
     params[:user].nil? ? nil : params.require(:user).permit(:avatar)
   end
 
@@ -125,6 +136,10 @@ class UsersController < ApplicationController
     @current_user.user_comments.find_each do |comment|
       comment.update(avatar: @current_user.avatar.url(:thumb))
     end
+  end
+
+  def user_params
+    params.permit(:original,:password,:content,:method)
   end
 
 end

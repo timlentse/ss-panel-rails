@@ -12,6 +12,10 @@ class AdminController < ApplicationController
     end
   end
 
+  def search
+    @users = User.where("user_name like '%#{params[:kw]}%' or email like '%#{params[:kw]}%'").paginate(:page=>params[:page])
+  end
+
   def traffic
   end
 

@@ -3,13 +3,13 @@
   <div id="page-wrapper">
     <div class="row">
       <div class="col-lg-12">
-        <h1 class="page-header">流量使用记录</h1>
+        <h1 class="page-header">用户管理</h1>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-12">
         <%= render "layouts/flash" %>
-        <p><a href="/admin/users/new" class="btn btn-info"><i class="fa fa-plus"></i>新建用户</a></p>
+        <p><a href="/admin/users/new" class="btn btn-info"><i class="fa fa-plus"></i>新建用户</a><span class="pull-right"><input class="search" placeholder="搜索用户"></input><a id="search" class="btn btn-warning" onclick="searchUser()">搜索</a></span></p>
         <div class="table-responsive">
           <table class="table table-bordered table-hover table-striped">
             <thead>
@@ -45,9 +45,15 @@
           <div class="flickr_pagination">
             <%= will_paginate @users, :container => false %>
           </div>
-
         </div>
       </div>
     </div>
   </div>
 </div>
+<script>
+function searchUser(){
+  kw=$(".search").val();
+  url = "/admin/search?kw="+kw;
+  window.location.href=url;
+}
+</script>

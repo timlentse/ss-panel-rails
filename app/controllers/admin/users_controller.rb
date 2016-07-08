@@ -42,8 +42,9 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     @user = User.find_by_id(params[:id])
+    name = @user.user_name
     if @user and @user.destroy
-      redirect_to "/admin/users", notice:"删除成功!"
+      redirect_to "/admin/users", notice:"删除用户#{name}成功!"
     elsif @user
       redirect_to "/admin/users", :flash=>{:error=>@user.errors.messages}
     else

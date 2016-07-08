@@ -1,5 +1,4 @@
 body{
-  padding-top: 50px;  
   background-color:#fff;
 }
 .navbar-top-links li a{
@@ -7,6 +6,9 @@ body{
 }
 .avatar{
   border-radius:10%;
+}
+#change_avatar{
+  margin-bottom:10px;
 }
 .collapse.in{
   background-color:#f8f8f8;
@@ -28,6 +30,9 @@ body{
   line-height: 75px;
   margin-bottom: 50px;
   padding-top:10%;
+}
+#index{
+  background-color:#fff;
 }
 #index .panel-heading{
   text-align: center;
@@ -148,4 +153,9 @@ a#login{
 }
 .submit-after{
   content: "ss";
+}
+.search{
+ padding:5px; 
+ width:100px;
+ margin-right:10px;
 }

@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   post '/user/password'=>'users#change_password'
   post '/user/connectPassword'=>'users#change_connect_password'
   patch '/user/avatar'=>'users#avatar'
+  delete '/user'=>'users#destroy'
 
   post '/checkin'=>'users#check_in'
   get '/admin'=>"admin#index"
@@ -34,5 +35,6 @@ Rails.application.routes.draw do
     get 'configuration'
     resources :users
     resources :nodes
+    get 'search'
   end
 end

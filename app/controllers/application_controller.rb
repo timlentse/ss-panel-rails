@@ -5,13 +5,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include ActionView::Helpers::DateHelper
 
-  before_action :set_params, :validate_login_status
+  before_action :init, :validate_login_status
   helper_method :is_login?
 
   protected
-  def set_params
-    @params = params.permit(:id,:email,:user_name,:original,:password,:token,:content,:method)
-    @app_name = Settings.app_name
+
+  def init
     @redis = MyRedis.current
     @session_token = cookies[:session_token]
   end

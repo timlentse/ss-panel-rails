@@ -1,11 +1,12 @@
 class AuthenticationsController < ApplicationController
+  before_action :set_auth_params
 
   skip_before_action :validate_login_status
 
   def login
     if request.post?
-      @user = User.find_by_email(@params[:email])
-      if @user and @user.authenticate(@params[:password])
+      @user = User.find_by_email(@auth_params[:email])
+      if @user and @user.authenticate(@auth_params[:password])
         give_session_token
         render json: {code:1,msg:"登录成功"}
         @user.update(last_check_in_time: Time.now.to_i)
@@ -26,13 +27,13 @@ class AuthenticationsController < ApplicationController
 
   def register
     if request.post?
-      render json: {code:0,msg:"邮箱格式错误"} and return unless User.validate_email(@params[:email])
-      found = User.find_by_email(@params[:email])
+      render json: {code:0,msg:"邮箱格式错误"} and return unless User.validate_email(@auth_params[:email])
+      found = User.find_by_email(@auth_params[:email])
       if found
         render json: {:code=>0,:msg=>"该邮箱已被注册"}
       else
-        @user = User.new(user_name: @params[:user_name], email: @params[:email], passwd: @params[:password])
-        @user.password=@params[:password]
+        @user = User.new(user_name: @auth_params[:user_name], email: @auth_params[:email], passwd: @auth_params[:password])
+        @user.password=@auth_params[:password]
         @user.transfer_enable = Settings.default_traffic
         @user.port = User.last.nil? ? Settings.init_port : User.last.port+1
         @user.reg_ip = request.remote_ip
@@ -50,7 +51,7 @@ class AuthenticationsController < ApplicationController
 
   def password_reset
     if request.post?
-      @user = User.find_by_email(@params[:email])
+      @user = User.find_by_email(@auth_params[:email])
       if @user
         send_token_email
         render json: {code:1,msg:"发送成功!请检查你的邮箱."}
@@ -62,10 +63,10 @@ class AuthenticationsController < ApplicationController
 
   def password_token
     if request.post?
-      @token = PasswordReset.find_by_token(@params[:token])
+      @token = PasswordReset.find_by_token(@auth_params[:token])
       if @token and @token.expire_at>Time.now
         @user = User.find_by_email(@token.email)
-        @user.password=@params[:password]
+        @user.password=@auth_params[:password]
         if @user.save
           render json: {code:1,msg:"密码重置成功"}
         else
@@ -78,9 +79,9 @@ class AuthenticationsController < ApplicationController
   end
 
   def verify
-    @email = @params[:email]
+    @email = @auth_params[:email]
     @token = @redis.get_verify_token(@email)
-    if @token and @token.eql?(@params[:token])
+    if @token and @token.eql?(@auth_params[:token])
       @user = User.find_by_email(@email)
       if @user
         @user.update(enable: 1, is_email_verify: 1)
@@ -109,9 +110,13 @@ class AuthenticationsController < ApplicationController
 
   def send_token_email
     token_string = SecureRandom.uuid
-    PasswordReset.create(email: @params[:email], token: token_string, expire_at: 4.hours.from_now) 
+    PasswordReset.create(email: @auth_params[:email], token: token_string, expire_at: 4.hours.from_now) 
     token_url = "https://ss.tan90.cn/password/token/#{token_string}"
     UserMailer.send_token(@user,token_url).deliver_later
+  end
+
+  def set_auth_params
+    @auth_params = params.permit(:email,:user_name,:original,:password,:token,:content,:method)
   end
 
 end
