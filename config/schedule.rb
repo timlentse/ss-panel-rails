@@ -3,7 +3,7 @@
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
 
-set :output, "~/current/log/cron_log.log"
+set :output, "/tmp/cron_log.log"
 
 job_type :rake,    "cd :path && :environment_variable=:environment /usr/local/bin/bundle exec rake :task --silent :output"
 
