@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @comments = fetch_all_comments
     @nodes_count = Node.where(:cata=>1).count
     @comments_count = UserComment.count
-    @traffics = UserTrafficLog.where(user_id: @current_user.id).limit(10)
+    @traffics = UserTrafficLog.where(user_id: @current_user.id).last(10)
     @config = SiteConfig.find_by_key("user-index")
     if @config
       flash.now[:announcement] = @config.value
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   end
 
   def traffic
-    @traffics = UserTrafficLog.where(user_id: @current_user.id).limit(10)
+    @traffics = UserTrafficLog.where(user_id: @current_user.id).order(log_at: :desc).limit(10)
   end
 
   def change
