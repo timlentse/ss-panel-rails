@@ -19,7 +19,27 @@ class AdminController < ApplicationController
   def traffic
   end
 
+  def invite
+    if params[:num]
+      params[:num].to_i.times{ |i| InviteCode.create(code: SecureRandom.uuid, user_id:0)  }
+      render json: {code:1, msg:"success"}
+    else
+      render json: {code:0, msg:"invalid number"}
+    end
+  end
+
   def configuration
+    if request.post?
+      site_config = SiteConfig.find_or_initialize_by(:key=>"user-index")
+      if params[:site_config] and params[:site_config][:value] and !params[:site_config][:value].empty?
+        site_config.value = params[:site_config][:value]
+        if site_config.save
+          redirect_to "/admin/configuration",notice:"修改公告成功"
+        else
+          flash.now[:error]="修改错误"
+        end
+      end
+    end
   end
 
 end

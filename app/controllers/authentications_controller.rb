@@ -28,9 +28,13 @@ class AuthenticationsController < ApplicationController
   def register
     if request.post?
       render json: {code:0,msg:"邮箱格式错误"} and return unless User.validate_email(@auth_params[:email])
+      if Settings.invited_code
+        ic = InviteCode.find_by(code: @auth_params[:invited_code])
+        render json: {code:0,msg:"邀请码无效"} and return if ic.nil?
+      end
       found = User.find_by_email(@auth_params[:email])
       if found
-        render json: {:code=>0,:msg=>"该邮箱已被注册"}
+        render json: {code:0,msg:"该邮箱已被注册"}
       else
         @user = User.new(user_name: @auth_params[:user_name], email: @auth_params[:email], passwd: @auth_params[:password])
         @user.password=@auth_params[:password]
@@ -40,10 +44,11 @@ class AuthenticationsController < ApplicationController
         if @user.save
           send_verify_email
           generate_invite_code
+          ic.update(:used=>1) if ic
           flash[:notice] = "恭喜你，注册成功"
-          render json: {:code=>1,:msg=>"注册成功"}
+          render json: {code:1,msg:"注册成功"}
         else
-          render json: {code:0,:msg=>"注册失败"}
+          render json: {code:0, msg:"注册失败"}
         end
       end
     end
@@ -116,7 +121,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def set_auth_params
-    @auth_params = params.permit(:email,:user_name,:original,:password,:token,:content,:method)
+    @auth_params = params.permit(:email,:user_name,:original,:password,:token,:content,:method, :invited_code)
   end
 
 end

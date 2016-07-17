@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'commons#welcome'
+  get '/code'=>'commons#code'
 
   get '/login'=>'authentications#login'
   post '/login'=>'authentications#login'
@@ -33,6 +34,8 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'traffic'
     get 'configuration'
+    post 'configuration'
+    post 'invite'
     resources :users
     resources :nodes
     get 'search'

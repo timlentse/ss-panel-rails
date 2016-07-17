@@ -20,6 +20,11 @@
                 <div class="form-group">
                   <input id="password_comfirm" class="form-control" placeholder="再次输入密码" name="password_comfirm" type="password">
                 </div>
+                <% if Settings.invited_code %>
+                  <div class="form-group">
+                    <input id="invited_code" class="form-control" placeholder="输入邀请码" name="invited_code" type="text">
+                  </div>
+                <% end %>
                 <a id="login" href="/login">已有账号</a>
                 <a id="submit" onclick="register()" class="btn btn-lg btn-info btn-block">注册</a>
             </fieldset>

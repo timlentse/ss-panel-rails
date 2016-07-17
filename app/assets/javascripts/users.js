@@ -1,10 +1,10 @@
 function insertSuccess(btn,msg){
   $(".error").remove();
   if ($(".success").length==0){
-    content = '<p class="success"><i class="fa fa-check"></i>'+msg+'</p>';
+    var content = '<p class="success"><i class="fa fa-check"></i>'+msg+'</p>';
     $(content).insertBefore(btn);
   }else{
-    html_content = '<i class="fa fa-check"></i>'+msg;
+    var html_content = '<i class="fa fa-check"></i>'+msg;
     $(".success").html(html_content);
   }
   $(".success").fadeOut(5000,function() { $(this).remove(); });
@@ -13,18 +13,18 @@ function insertSuccess(btn,msg){
 function insertError(btn,msg){
   $(".success").remove();
   if ($(".error").length==0){
-    content = '<p class="error"><i class="fa fa-close"></i>'+msg+'</p>';
+    var content = '<p class="error"><i class="fa fa-close"></i>'+msg+'</p>';
     $(content).insertBefore(btn);
   }else{
-    html_content = '<i class="fa fa-close"></i>'+msg;
+    var html_content = '<i class="fa fa-close"></i>'+msg;
     $(".error").html(html_content);
   }
 }
 
 function changePassword(){
   $(".error").remove();
-  original_password = $("#original_password").val();
-  password = $("#password").val();
+  var original_password = $("#original_password").val();
+  var password = $("#password").val();
   if ($("#password_comfirm").val()==password){
     $.post("/user/password", {"original":original_password, "password":password},function(data){
       if (data["code"]==1){
@@ -41,7 +41,7 @@ function changePassword(){
 
 function changeConnectPassword(){
   $(".error").remove();
-  password = $("#connect_password").val();
+  var password = $("#connect_password").val();
   $.post("/user/connectPassword", {"password":password},function(data){
     if (data["code"]==1){
       insertSuccess("#change-connect",data["msg"]);
@@ -53,11 +53,18 @@ function changeConnectPassword(){
 }
 
 function submitChat(){
-  content = $("#btn-input").val();
-  $("#btn-input").val('');
+  var content = $("#btn-input").val();
   if (content.length!=0){
     $.post("/user/comments",{"content": content},function(data){
       $("#btn-input").val('');
     }) 
   }
+}
+
+function generateInvite(){
+  var num = $("#num").val();
+  $("#generate").html('<i class="fa fa-spinner fa-spin"></i> 正在生成');
+  $.post("/admin/invite",{"num": num}, function(data){
+    $("#generate").html('生成');
+  })
 }

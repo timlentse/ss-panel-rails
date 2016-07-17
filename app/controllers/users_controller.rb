@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   end
 
   def invite
-    @codes = InviteCode.where(:user_id=>@current_user.id)
+    @codes = InviteCode.select(:code,:used).where(:user_id=>@current_user.id)
   end
 
   def comments
