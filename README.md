@@ -89,6 +89,9 @@ mailgun_user_name: "username of mailgun smtp"
 
 # string for avatar URI Obfuscation
 hash_secret: "hash-secret-for-paperclip"
+
+# Enable invited code feature `( true for enable )`
+invited_code: true
 ```
 * regeister a mailgun account [here](http://www.mailgun.com) if you use mailgun to send email
 
