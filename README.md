@@ -19,6 +19,8 @@ Open your shell and type
 ```shell
 $ curl -Ssl https://raw.githubusercontent.com/timlentse/ss-panel-rails/master/setup.sh | sh
 ```
+* Now you should check [#4](#4-create-databaseyml) and [#5](#5-some-configuration) how to add configuration files
+
 Go to ss-panel-rails and type `rails s`
 
 Open browser and visit `http://localhost:3000`
@@ -106,7 +108,7 @@ hash_secret: "hash-secret-for-paperclip"
 # Enable invited code feature `( true for enable )`
 invited_code: true
 ```
-* regeister a mailgun account [here](http://www.mailgun.com) if you use mailgun to send email
+* Regeister a mailgun account [here](http://www.mailgun.com) if you use mailgun to send email
 
 ### Time to playaround
 Go to app root directory and type:
@@ -121,8 +123,8 @@ open browser and visit [http://localhost:3000](http://localhost:3000)
 * add new features and commit
 * pull request
 
-### wiki
-see how to integrate you rails using nginx and puma [wiki](https://github.com/timlentse/ss-panel-rails/wiki)
+### Wiki
+See how to integrate you rails using nginx and puma [wiki](https://github.com/timlentse/ss-panel-rails/wiki)
 
 ### LICENSE
 MIT
