@@ -61,6 +61,12 @@ install_gems(){
   sudo gem install bundler rails
 }
 
+install_dep(){
+  cd ss-panel-rails
+  bundle config mirrors.https://rubygems.org/ https://ruby.taobao.org
+  bundle install --path=vendor
+}
+
 # Install stuff (git, nginx, mysql, redis, openssl ruby)
 
 install_stuff(){
@@ -94,3 +100,4 @@ install_stuff(){
 }
 
 install_stuff
+install_dep

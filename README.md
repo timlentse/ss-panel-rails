@@ -10,17 +10,21 @@ This is a rails copy of [ss-panel](https://github.com/orvice/ss-panel). Theme by
 * mysql
 * redis
 
-### Install
-
 ### One Step setup
 
-If you are new to ruby or rails, One step setup shell script to install needed dependencies.
+If you are new to ruby or rails, `One step setup` shell script was provided to install needed dependencies.
 
 Open your shell and type
 
 ```shell
 $ curl -Ssl https://raw.githubusercontent.com/timlentse/ss-panel-rails/master/setup.sh | sh
 ```
+Go to ss-panel-rails and type `rails s`
+
+Open browser and visit `http://localhost:3000`
+
+### Install
+
 #### 1. clone repository
 
 ```shell
