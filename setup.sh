@@ -1,4 +1,6 @@
 #! /bin/sh
+git clone https://github.com/timlentse/ss-panel-rails
+
 plantform_name=$(python -mplatform | tr '[:upper:]' '[:lower:]') 
 
 get_distribution_name(){
@@ -30,7 +32,7 @@ install_redis(){
   fi
   cd "$redis_dir_name"
   make 
-  make install
+  sudo make install
   cd 
 }
 
@@ -49,7 +51,7 @@ install_ruby(){
   cd $ruby_dir_name
   ./configure
   make 
-  make install
+  sudo make install
   cd 
 }
 
@@ -71,23 +73,21 @@ install_stuff(){
       install_gems
       ;;
     'ubuntu')
-      apt-get update
-      apt-get -y install build-essential
-      apt-get -y install git nginx mysql-client mysql-server libmysql++-dev libmysqlclient-dev libmysql++3
-      apt-get -y install imagemagick libmagick++-dev
+      sudo apt-get update
+      sudo apt-get -y install build-essential
+      sudo apt-get -y install git nginx mysql-client mysql-server libmysql++-dev libmysqlclient-dev libmysql++3
+      sudo apt-get -y install imagemagick libmagick++-dev
       install_redis
-      apt-get -y install openssl libssl-dev
-      # for js runtime 
-      apt-get -y install nodejs
+      sudo apt-get -y install openssl libssl-dev nodejs
       install_ruby
       install_gems
       ;;
     'centos')
-      yum update
-      yum -y install git nginx mysql-client mysql-server ImageMagick ImageMagick-c++-devel 
+      sudo yum update
+      sudo yum -y install git nginx mysql-client mysql-server ImageMagick ImageMagick-c++-devel 
       install_redis
-      yum -y install openssl openssl-devel
-      yum -y install nodejs
+      sudo yum -y install openssl openssl-devel
+      sudo yum -y install nodejs
       install_gems
       ;;
   esac
