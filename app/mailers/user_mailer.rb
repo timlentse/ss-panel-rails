@@ -10,4 +10,10 @@ class UserMailer < ApplicationMailer
     @url = url
     mail to: @user.email, subject: 'Reset your password'
   end
+
+  def send_group_email(subject,template)
+    users = User.all.map{|user| user.email} 
+    mail to: users, subject: subject,template_name: template
+  end
+
 end
