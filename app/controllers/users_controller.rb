@@ -74,6 +74,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def change_username
+    @current_user.user_name = user_params[:user_name]
+    if @current_user.save
+      render json: {code: 1, msg: "修改成功"}
+    else
+      render json: {code: 0 , msg: "修改失败"}
+    end
+  end
+
   def change_connect_password
     @current_user.passwd = user_params[:password]
     if @current_user.save
@@ -139,7 +148,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.permit(:original,:password,:content,:method)
+    params.permit(:original,:password,:content,:method,:user_name)
   end
 
 end

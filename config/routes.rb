@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   post '/user/comments'=>'users#comments'
   post '/user/password'=>'users#change_password'
   post '/user/connectPassword'=>'users#change_connect_password'
+  post '/user/change_username'=>'users#change_username'
   patch '/user/avatar'=>'users#avatar'
   delete '/user'=>'users#destroy'
 

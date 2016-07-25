@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-6">
+      <div class="col-lg-4">
         <div class="panel panel-red">
           <div class="panel-heading">
             密码修改
@@ -15,12 +15,12 @@
           <div class="panel-body">
             <p>当前密码：<input type='password' class='form-control' id='original_password'></input></p>
             <p>新密码：<input type='password' class='form-control' id='password'></input></p>
-            <p>确认密码：<input type='password' class='form-control' id='password_comfirm'></input></p>
+            <p>确认新密码：<input type='password' class='form-control' id='password_comfirm'></input></p>
             <a id="change-pass" onclick="changePassword()" style="color:#fff" class='btn btn-info'>修改</a>
           </div>
         </div>
       </div>
-      <div class="col-lg-6">
+      <div class="col-lg-4">
         <div class="panel panel-primary">
           <div class="panel-heading">
             Shadowsocks连接信息修改
@@ -34,6 +34,18 @@
             </select>
             </p>
             <a id="change-connect" onclick="changeConnectPassword()" class='btn btn-info'>修改</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="panel panel-yellow">
+          <div class="panel-heading">
+            用户名修改
+          </div>
+          <div class="panel-body">
+            <p>你当前的用户名是：<span id="username" style="color:#666"><%= @current_user.user_name %></span></p>
+            <p><input type='text' class='form-control' id='name' placeholder="输入新的用户名"></input></p>
+            <a id="change-username" onclick="changeUserName()" style="color:#fff" class='btn btn-info'>修改</a>
           </div>
         </div>
       </div>

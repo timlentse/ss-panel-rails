@@ -52,6 +52,20 @@ function changeConnectPassword(){
   })
 }
 
+function changeUserName(){
+  $(".error").remove();
+  var username = $("#name").val();
+  $.post("/user/change_username", {"user_name":username},function(data){
+    if (data["code"]==1){
+      $("#username").html(username);
+      insertSuccess("#change-username",data["msg"]);
+    }
+    else {
+      insertError("#change-username",data["msg"]);
+    }
+  })
+}
+
 function submitChat(){
   var content = $("#btn-input").val();
   if (content.length!=0){
