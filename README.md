@@ -1,9 +1,11 @@
-### README
+## SS-Rails-Panel
+
 This is a rails copy of [ss-panel](https://github.com/orvice/ss-panel). Theme by [SB Admin 2 Theme](http://startbootstrap.com/template-overviews/sb-admin-2/)
 
 ### ScreenShots
 ![alt tag](https://raw.githubusercontent.com/timlentse/ss-panel-rails/master/public/home.png)
 ![alt tag](https://raw.githubusercontent.com/timlentse/ss-panel-rails/master/public/index.png)
+
 ### Requirements
 * ruby 2.2+
 * rails 4.2+
@@ -106,9 +108,19 @@ mailgun_user_name: "username of mailgun smtp"
 hash_secret: "hash-secret-for-paperclip"
 
 # Enable invited code feature `( true for enable )`
-invited_code: true
+invited_code: false
 ```
 * Regeister a mailgun account [here](http://www.mailgun.com) if you use mailgun to send email
+
+#### 6. create an admin account
+
+Navigate to repo root dir and type:
+
+```
+$ email='example.com' name='helloworld' passwd='foo' bundle exec rake create_admin
+```
+
+this will create an admin account whose account_name is `example.com`
 
 ### Time to playaround
 Go to app root directory and type:
