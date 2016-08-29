@@ -12,7 +12,9 @@ This is a rails copy of [ss-panel](https://github.com/orvice/ss-panel). Theme by
 * mysql
 * redis
 
-### One Step setup
+### Installation
+
+#### 1. install needed deps
 
 If you are new to ruby or rails, `One step setup` shell script was provided to install needed dependencies.
 
@@ -21,77 +23,24 @@ Open your shell and type
 ```shell
 $ curl -Ssl https://raw.githubusercontent.com/timlentse/ss-panel-rails/master/setup.sh | sh
 ```
-* Now you should check [#4](#4-create-databaseyml) and [#5](#5-some-configuration) how to add configuration files
+
+* Now you should check [#2](#4-create-databaseyml) and [#3](#5-some-configuration) how to add configuration files
 
 Go to ss-panel-rails and type `rails s`
 
 Open browser and visit `http://localhost:3000`
 
-### Install
 
-#### 1. clone repository
-
-```shell
-$ git clone git@github.com:timlentse/ss-panel-rails.git
-```
-#### 2. install gems
-
-Your machine should have `ruby` installed. If not, see [here](https://www.ruby-lang.org/en/) for installation guide.
-
-Once `ruby` installed. type:
-
-```shell
-$ sudo gem install bundler
-```
-
-In repository root directory, type the following to install dependencies.
-
-```shell
-# run this command under 'ss-panel-rails'
-
-$ bundle install --path=vendor/bundle
-```
-
-#### 3. load database and tables
-We use `mysql` as database for rails. Import sql file in `connfig/db_init.sql`  to mysql
-
-```sql
-mysql> source `absolute path of db_init.sql `;
-```
-
-#### 4. create database.yml
+#### 2. create database.yml
 
 For security consideration, the `database.yml` was not put in version control, so we should create one.
+We had provided an example file, rename it and change some important information(mysql account,password,etc)
 
 ```shell
-$ vi config/database.yml
+$ mv config/database.yml.example config/database.yml
 ```
 
-* paste the following
-
-```ruby
-
-default: &default
-adapter: mysql2
-pool: 5
-timeout: 5000
-database: 'sspanel_db'
-host: 'localhost'
-
-# In development environment
-development:
-<<: *default
-username: "your mysql username"
-password: "your mysql password"
-
-# In production environment
-production:
-<<: *default
-username: "your mysql username"
-password: "your mysql password"
-```
-
-#### 5. some configuration
+#### 3. some configuration
 * Notice: 
 All private setting are stored in file `config/settings.local.yml`. Create a file `settings.local.yml` in directory `ss-panel-rails/config` and add the following for smtp setting
 ```ruby
@@ -112,15 +61,12 @@ invited_code: false
 ```
 * Regeister a mailgun account [here](http://www.mailgun.com) if you use mailgun to send email
 
-#### 6. create an admin account
+#### 4. load database schema 
 
-Navigate to repo root dir and type:
-
+```shell
+$ bundle exec rake db:schema:load
+$ bundle exec rake db:seed    # this will create an admin account whose account_name is `admin@example.org`(you can change it in db/seed.rb)
 ```
-$ email='example.com' name='helloworld' passwd='foo' bundle exec rake create_admin
-```
-
-this will create an admin account whose account_name is `example.com`
 
 ### Time to playaround
 Go to app root directory and type:

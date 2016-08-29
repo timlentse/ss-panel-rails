@@ -1,0 +1,18 @@
+default: &default
+  adapter: mysql2
+  pool: 5
+  timeout: 5000
+  database: 'sspanel_db'
+  host: 'localhost'
+
+# In development environment
+development:
+  <<: *default
+  username: "your mysql username"
+  password: "your mysql password"
+
+# In production environment
+production:
+  <<: *default
+  username: "your mysql username"
+  password: "your mysql password"
