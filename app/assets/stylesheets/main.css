@@ -155,7 +155,16 @@ a#login{
   content: "ss";
 }
 .search{
- padding:5px; 
- width:100px;
- margin-right:10px;
+  padding:5px; 
+  width:100px;
+  margin-right:10px;
+}
+.refer{
+  padding:10px 20px
+}
+.navbar-top-links li a.sponsor{
+  padding:10px 10px;
+  min-height:30px;
+  background-color:#d9534f;
+  color:#fff;
 }

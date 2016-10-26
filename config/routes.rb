@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   post '/password/token/:token'=>'authentications#password_token'
   get '/verify'=>"authentications#verify"
 
+  get '/sponsor'=>"users#sponsor"
   get '/user' => 'users#home'
   get '/user/node' => 'users#node'
   get '/user/profile' => 'users#profile'

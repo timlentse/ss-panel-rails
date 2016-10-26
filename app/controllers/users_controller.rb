@@ -115,6 +115,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def sponsor
+
+  end
+
 
   private
 
