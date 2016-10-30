@@ -11,6 +11,6 @@
  * file per style scope.
  *
  *= require_self
- *= require_tree .
  *= require bootstrap_sb_admin
+ *= require_tree .
  */

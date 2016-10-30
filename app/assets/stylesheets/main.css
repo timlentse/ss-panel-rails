@@ -1,7 +1,7 @@
 body{
   background-color:#fff;
 }
-.navbar-top-links li a{
+.navbar-top-links li>a{
   padding:10px;
 }
 .avatar{
@@ -116,7 +116,7 @@ a#login{
 .footer p {
   text-align:center;
   font-size:1em;
-  padding-top:15px;
+  padding:15px 20px 15px 20px;
   color:#8a9399;
 }
 .error{
@@ -167,4 +167,19 @@ a#login{
   min-height:30px;
   background-color:#d9534f;
   color:#fff;
+}
+.navbar-default .navbar-nav>li>a{
+  color:#555;
+}
+.navbar-brand b{
+  color:#337ab7;
+}
+.navbar-default .navbar-brand{
+  color:#3BD54E;
+}
+.auth-panel-header{
+  text-align:center;
+}
+.brand{
+  font-size:0.9em;
 }
