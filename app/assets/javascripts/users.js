@@ -66,15 +66,6 @@ function changeUserName(){
   })
 }
 
-function submitChat(){
-  var content = $("#btn-input").val();
-  if (content.length!=0){
-    $.post("/user/comments",{"content": content},function(data){
-      $("#btn-input").val('');
-    }) 
-  }
-}
-
 function generateInvite(){
   var num = $("#num").val();
   $("#generate").html('<i class="fa fa-spinner fa-spin"></i> 正在生成');

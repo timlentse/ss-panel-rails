@@ -55,8 +55,11 @@
         </li>
         <li><a href="/user/edit"><i class="fa fa-gear fa-fw"></i>设置</a>
         </li>
-        <li class="divider"></li>
-        <li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i>退出登录</a>
+        <li>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fa fa-sign-out fa-fw"></i>
+            退出登录
+          <% end %>
         </li>
       </ul>
     </li>
@@ -83,7 +86,7 @@
         <li>
           <a href="/user/invite"><i class="fa fa-group"></i>邀请好友</a>
         </li>
-        <% if @current_user.is_admin? %>
+        <% if @current_user.is_admin %>
           <li>
             <a href="#"><i class="fa fa-navicon"></i>管理面板<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">

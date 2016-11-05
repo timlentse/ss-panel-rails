@@ -16,10 +16,10 @@
         <li><a href="/code">邀请码</a></li>
         <% if is_login? %>
           <li><a href="/user">用户中心</a></li>
-          <li><a href="/logout">退出登录</a></li>
+          <li><%= link_to "退出登录",destroy_user_session_path,method: :delete %></li>
         <% else %>
-          <li><a href="/register">注册</a></li>
-          <li><a href="/login">登录</a></li>
+          <li><a href="/users/sign_up">注册</a></li>
+          <li><a href="/users/sign_in">登录</a></li>
         <% end %>
       </ul>
     </div>

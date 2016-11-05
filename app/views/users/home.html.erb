@@ -116,8 +116,8 @@
           </div>
           <div class="panel-body">
             <ul id="chat-msg" class="chat">
-              <% @comments.each_with_index do |comment,ix| %>
-                <% direction = ix%2==0 ? "right" : "left" %>
+              <% @comments.each do |comment| %>
+                <% direction = comment[:id]%2==0 ? "right" : "left" %>
                 <li class="<%= direction %> clearfix">
                   <span class="chat-img pull-<%= direction %>">
                     <img src="<%= comment[:avatar] %>" alt="User Avatar" class="img-circle" />
@@ -137,9 +137,9 @@
           </div>
           <div class="panel-footer">
             <div class="input-group">
-              <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+              <input id="msg-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
               <span class="input-group-btn">
-                <button class="btn btn-warning btn-sm" id="btn-chat" onclick="submitChat()">
+                <button class="btn btn-warning btn-sm" id="btn-chat">
                   发送
                 </button>
               </span>

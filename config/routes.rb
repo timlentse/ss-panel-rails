@@ -6,16 +6,7 @@ Rails.application.routes.draw do
   root 'commons#welcome'
   get '/code'=>'commons#code'
 
-  get '/login'=>'authentications#login'
-  post '/login'=>'authentications#login'
-  get '/logout'=>'authentications#logout'
-  get '/register'=>"authentications#register"
-  post '/register'=>"authentications#register"
-  get '/password/reset'=>"authentications#password_reset"
-  post '/password/reset'=>"authentications#password_reset"
-  get '/password/token/:token'=>'authentications#password_token'
-  post '/password/token/:token'=>'authentications#password_token'
-  get '/verify'=>"authentications#verify"
+  devise_for :users
 
   get '/sponsor'=>"users#sponsor"
   get '/user' => 'users#home'
@@ -24,12 +15,13 @@ Rails.application.routes.draw do
   get '/user/traffic' => 'users#traffic'
   get '/user/edit' => 'users#change'
   get '/user/invite' => 'users#invite'
-  post '/user/comments'=>'users#comments'
   post '/user/password'=>'users#change_password'
   post '/user/connectPassword'=>'users#change_connect_password'
   post '/user/change_username'=>'users#change_username'
   patch '/user/avatar'=>'users#avatar'
   delete '/user'=>'users#destroy'
+  mount ActionCable.server => '/cable'
+
 
   post '/checkin'=>'users#check_in'
   get '/admin'=>"admin#index"

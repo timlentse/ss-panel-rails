@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def node
-    if @current_user.is_offer? or @current_user.is_admin?
+    if @current_user.is_offer? or @current_user.is_admin
       @nodes = Node.all
     else
       @nodes = Node.where(cata:1)
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   def profile
     @checkin_time = human_readable_time(@current_user.last_get_gift_time)
     @login_time = human_readable_time(@current_user.last_check_in_time)
-    @reg_date = human_readable_time(@current_user.reg_date)
+    @reg_date = human_readable_time(@current_user.created_at.to_i)
   end
 
   def traffic
@@ -37,17 +37,6 @@ class UsersController < ApplicationController
 
   def invite
     @codes = InviteCode.select(:code,:used).where(:user_id=>@current_user.id)
-  end
-
-  def comments
-    @comment = UserComment.new(user_id:@current_user.id,user_name: @current_user.user_name,avatar:@current_user.avatar.url(:thumb))
-    @comment.content = user_params[:content]
-    if @comment.save
-      @comments = fetch_all_comments
-      render 'comments.js.erb'
-    else
-      render json: {code:0,data:[]}
-    end
   end
 
   def check_in
@@ -116,16 +105,14 @@ class UsersController < ApplicationController
   end
 
   def sponsor
-
   end
-
 
   private
 
   def fetch_all_comments
     UserComment.all.map do |comment|
-      comment_time = distance_of_time_in_words(comment.created_at,Time.now)
-      {content: comment.content,user_name: comment.user_name, avatar: comment.avatar,time: comment_time }
+      comment_time = time_ago_in_words(comment.created_at)
+      {id: comment.id, content: comment.content,user_name: comment.user_name, avatar: comment.avatar,time: comment_time }
     end
   end
 
@@ -133,7 +120,7 @@ class UsersController < ApplicationController
     if int_time==0
       return "从未签到"
     else
-      return distance_of_time_in_words(Time.at(int_time),Time.now)
+      return time_ago_in_words(Time.at(int_time))
     end
   end
 
