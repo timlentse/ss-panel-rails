@@ -1,20 +1,20 @@
 ## SS-Rails-Panel
 
-This is a rails copy of [ss-panel](https://github.com/orvice/ss-panel). Theme by [SB Admin 2 Theme](http://startbootstrap.com/template-overviews/sb-admin-2/)
+A Ruby on Rails copy of [ss-panel](https://github.com/orvice/ss-panel). Theme by [SB Admin 2 Theme](http://startbootstrap.com/template-overviews/sb-admin-2/)
 
 ### ScreenShots
 ![alt tag](https://raw.githubusercontent.com/timlentse/ss-panel-rails/master/public/home.png)
 ![alt tag](https://raw.githubusercontent.com/timlentse/ss-panel-rails/master/public/index.png)
 
 ### Requirements
-* ruby 2.2+
-* rails 4.2+
-* mysql
-* redis
+* Ruby 2.2+
+* Rails 4.2+
+* Mysql
+* Redis
 
 ### Installation
 
-#### 1. install needed deps
+#### 1. Install needed dependencies
 
 If you are new to ruby or rails, `One step setup` shell script was provided to install needed dependencies.
 
@@ -24,14 +24,14 @@ Open your shell and type
 $ curl -Ssl https://raw.githubusercontent.com/timlentse/ss-panel-rails/master/setup.sh | sh
 ```
 
-* Now you should check [#2](#4-create-databaseyml) and [#3](#5-some-configuration) how to add configuration files
+* Now you should check [#2](#2-create-databaseyml) and [#3](#3-config-your-application) for how to make it works.
 
 Go to ss-panel-rails and type `rails s`
 
 Open browser and visit `http://localhost:3000`
 
 
-#### 2. create database.yml
+#### 2. Create database.yml
 
 For security consideration, the `database.yml` was not put in version control, so we should create one.
 We had provided an example file, rename it and change some important information(mysql account,password,etc)
@@ -40,7 +40,7 @@ We had provided an example file, rename it and change some important information
 $ mv config/database.yml.example config/database.yml
 ```
 
-#### 3. some configuration
+#### 3. Config your application
 * Notice: 
 All private setting are stored in file `config/settings.local.yml`. Create a file `settings.local.yml` in directory `ss-panel-rails/config` and add the following for smtp setting
 ```ruby
@@ -61,12 +61,15 @@ invited_code: false
 ```
 * Regeister a mailgun account [here](http://www.mailgun.com) if you use mailgun to send email
 
-#### 4. load database schema 
+#### 4. Load database schema 
 
 ```shell
 $ bundle exec rake db:schema:load
 $ bundle exec rake db:seed    # this will create an admin account whose account_name is `admin@example.org`(you can change it in db/seed.rb)
 ```
+#### 5. Sidekiq as the actionjob adapter
+
+This repo uses actioncable for chat and sidekiq for message relay job, so you should run `bundle exec sidekiq` to get activejob runs.
 
 ### Time to playaround
 Go to app root directory and type:

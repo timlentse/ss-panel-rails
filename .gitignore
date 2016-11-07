@@ -32,4 +32,4 @@ config/database.yml
 
 # Ignore avatar
 public/system
-/.DS_Store
+*.DS_Store
