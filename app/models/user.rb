@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   end
 
   def authenticate(password_ori)
-    self.pass == Digest::SHA256.hexdigest(password_ori)
+    self.encrypted_password == Digest::SHA256.hexdigest(password_ori)
   end
 
   def is_offer?

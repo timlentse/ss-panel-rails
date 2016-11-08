@@ -10,6 +10,7 @@
         </div>
         <div class="panel-body">
           <%= form_for :user do |f| %>
+            <%= devise_error_messages! %>
             <fieldset>
               <div class="form-group">
                 <%= f.text_field :email, type:"email",class:"form-control",placeholder:"注册邮箱" %>

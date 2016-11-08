@@ -52,7 +52,7 @@ class UsersController < ApplicationController
 
   def change_password
     if @current_user.authenticate(user_params[:original])
-      @current_user.password=user_params[:password]
+      @current_user.password = user_params[:password]
       if @current_user.save
         render json: {code: 1, msg:"修改成功"}
       else
