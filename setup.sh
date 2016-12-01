@@ -1,7 +1,10 @@
 #! /bin/sh
-git clone https://github.com/timlentse/ss-panel-rails
+
+git clone git@github.com:timlentse/ss-panel-rails.git
 
 plantform_name=$(python -mplatform | tr '[:upper:]' '[:lower:]') 
+
+echo "Your plantform is $plantform_name"
 
 get_distribution_name(){
   case "$plantform_name" in
@@ -21,10 +24,10 @@ distribution_name=$(get_distribution_name)
 # Install redis by compiling source code
 
 install_redis(){
-  redis_dir_name=/usr/local/redis-3.2.0
+  redis_dir_name="/usr/local/redis-3.2.0"
   echo "Install redis by compiling from source code...\n
   version: 3.2.0\n"
-  if [ -d "$redis_dir_name" ];then
+  if [ -f "$redis_dir_name.tar.gz" ];then
     echo "Already Downloaded!"
   else
     wget "http://download.redis.io/releases/redis-3.2.0.tar.gz"
@@ -42,7 +45,7 @@ install_ruby(){
   ruby_dir_name="ruby-2.3.1"
   echo "Install ruby by compiling from source code...\n
   version: 2.3.1\n"
-  if [ -d "$ruby_dir_name" ];then
+  if [ -f "$ruby_dir_name.tar.gz" ];then
     echo "Already downloaded!"
   else
     wget "https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.tar.gz"
@@ -63,8 +66,8 @@ install_gems(){
 
 install_dep(){
   cd ss-panel-rails
-  bundle config mirrors.https://rubygems.org/ https://ruby.taobao.org
-  bundle install --path=vendor
+  /usr/local/bin/bundle config mirrors.https://rubygems.org/ https://ruby.taobao.org
+  /usr/local/bin/bundle install --path=vendor/bundle
 }
 
 # Install stuff (git, nginx, mysql, redis, openssl ruby)
@@ -94,6 +97,7 @@ install_stuff(){
       install_redis
       sudo yum -y install openssl openssl-devel
       sudo yum -y install nodejs
+      install_ruby
       install_gems
       ;;
   esac
