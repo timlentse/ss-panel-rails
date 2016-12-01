@@ -3,7 +3,6 @@
 A Ruby on Rails copy of [ss-panel](https://github.com/orvice/ss-panel). Theme by [SB Admin 2 Theme](http://startbootstrap.com/template-overviews/sb-admin-2/)
 
 ### ScreenShots
-![alt tag](https://raw.githubusercontent.com/timlentse/ss-panel-rails/master/public/home.png)
 ![alt tag](https://raw.githubusercontent.com/timlentse/ss-panel-rails/master/public/index.png)
 
 ### Requirements

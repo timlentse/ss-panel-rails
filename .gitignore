@@ -17,8 +17,11 @@
 /tmp
 /log
 /test
+
+# Ignore bundle gems
 /vendor/bundle
 
+# Ignore config files
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
@@ -32,4 +35,6 @@ config/database.yml
 
 # Ignore avatar
 public/system
+
+# Ignore DS_Store in mac
 *.DS_Store
