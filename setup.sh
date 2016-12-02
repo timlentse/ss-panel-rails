@@ -24,16 +24,17 @@ distribution_name=$(get_distribution_name)
 # Install redis by compiling source code
 
 install_redis(){
-  redis_dir_name="/usr/local/redis-3.2.0"
+  redis_dir_name="redis-3.2.0"
   echo "Install redis by compiling from source code...\n
   version: 3.2.0\n"
   if [ -f "$redis_dir_name.tar.gz" ];then
     echo "Already Downloaded!"
+    tar -xzvf redis-3.2.0.tar.gz -C /usr/local/
   else
     wget "http://download.redis.io/releases/redis-3.2.0.tar.gz"
     tar -xzvf redis-3.2.0.tar.gz -C /usr/local/
   fi
-  cd "$redis_dir_name"
+  cd "/usr/local/$redis_dir_name"
   make 
   sudo make install
   cd 
@@ -47,6 +48,7 @@ install_ruby(){
   version: 2.3.1\n"
   if [ -f "$ruby_dir_name.tar.gz" ];then
     echo "Already downloaded!"
+    tar -xzvf ruby-2.3.1.tar.gz
   else
     wget "https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.tar.gz"
     tar -xzvf ruby-2.3.1.tar.gz
