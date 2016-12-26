@@ -56,7 +56,8 @@ class Admin::UsersController < ApplicationController
 
   def set_user_params
     @user_params = params.require(:user).permit(:user_name,:email,:passwd,:transfer_enable,:port,:pass)
-    @user_params[:pass] = Digest::SHA256.hexdigest(@user_params[:pass]) if @user_params[:pass]
+    @user_params[:encrypted_password] = Digest::SHA256.hexdigest(@user_params[:pass]) if @user_params[:pass]
+    @user_params.delete(:pass)
   end
 
 end
