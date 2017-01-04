@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class User < ActiveRecord::Base
 
   self.table_name = 'user'
@@ -63,8 +64,9 @@ class User < ActiveRecord::Base
   end
 
   def set_port_and_sspass
-    the_last_port_num = self.class.order(port: :asc).last.port
-    self.port = the_last_port_num+1
+    last_ar = self.class.order(port: :asc).last
+    the_last_port_num = last_ar.nil? ? 1025 : last_ar.port
+    self.port = the_last_port_num + 1
     self.passwd = SecureRandom.hex(3)
   end
 
