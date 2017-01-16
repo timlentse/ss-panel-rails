@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "remember_created_at"
     t.string   "last_sign_in_ip",        limit: 20,  default: "",                         null: false
     t.integer  "sign_in_count",                      default: 0,                          null: false
-    t.datetime "reg_date",                           default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "reg_date",                           default:"2016-11-05 08:59:18",       null: false
     t.integer  "invite_num",                         default: 0,                          null: false
     t.boolean  "is_admin",                           default: false,                      null: false
     t.integer  "ref_by",                             default: 0,                          null: false
