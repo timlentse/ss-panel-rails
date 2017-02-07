@@ -17,13 +17,14 @@ class Admin::UsersController < ApplicationController
     if @user and @user.update(@user_params)
       redirect_to "/admin/users",notice:"修改成功!"
     elsif @user
-      render "edit",:flash=>{:error=>@user.errors.messages}
+      render "edit",:flash=>{:alert=>@user.errors.messages}
     else
-      render "edit",:flash=>{:error=>"用户不存在"}
+      render "edit",:flash=>{:alert=>"用户不存在"}
     end
   end
 
   def create
+    Settings.skip_invited_code = true
     @user = User.new(@user_params)
     @user.password = @user_params[:passwd]
     @user.transfer_enable = Settings.default_traffic
@@ -32,7 +33,7 @@ class Admin::UsersController < ApplicationController
     if @user.save 
       redirect_to "/admin/users",notice: "新建成功!"
     else
-      flash.now[:error] = @user.errors.messages
+      flash.now[:alert] = @user.errors.messages
       render "new"
     end
   end
@@ -46,9 +47,9 @@ class Admin::UsersController < ApplicationController
     if @user and @user.destroy
       redirect_to "/admin/users", notice:"删除用户#{name}成功!"
     elsif @user
-      redirect_to "/admin/users", :flash=>{:error=>@user.errors.messages}
+      redirect_to "/admin/users", :flash=>{:alert=>@user.errors.messages}
     else
-      redirect_to "/admin/users", :flash=>{:error=>"用户不存在"}
+      redirect_to "/admin/users", :flash=>{:alert=>"用户不存在"}
     end
   end
 

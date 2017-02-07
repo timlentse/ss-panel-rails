@@ -36,7 +36,7 @@ class AdminController < ApplicationController
         if site_config.save
           redirect_to "/admin/configuration",notice:"修改公告成功"
         else
-          flash.now[:error]="修改错误"
+          flash.now[:alert]="修改错误"
         end
       end
     end

@@ -15,7 +15,7 @@ class Admin::NodesController < ApplicationController
     if @node.save
       redirect_to "/admin/nodes", notice: "新建成功!"
     else
-      flash.now[:error] = @node.errors.messages
+      flash.now[:alert] = @node.errors.messages
       render 'new'
     end
   end
@@ -30,7 +30,7 @@ class Admin::NodesController < ApplicationController
     if @node.update(@node_params)
       redirect_to "/admin/nodes", notice: "更改成功!"
     else
-      flash.now[:error] = @node.errors.messages
+      flash.now[:alert] = @node.errors.messages
       render 'edit'
     end
   end
@@ -40,9 +40,9 @@ class Admin::NodesController < ApplicationController
     if @node and @node.destroy
       redirect_to "/admin/nodes", notice: "删除成功!"
     elsif @node
-      redirect_to "/admin/nodes",:flash=>{:error=>@node.errors.messages}
+      redirect_to "/admin/nodes",:flash=>{:alert=>@node.errors.messages}
     else
-      redirect_to "/admin/nodes",:flash=>{:error=>"节点不存在"}
+      redirect_to "/admin/nodes",:flash=>{:alert=>"节点不存在"}
     end
   end
 

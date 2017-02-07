@@ -12,7 +12,7 @@ class NodesController < ApplicationController
     if @node.save
       redirect_to "/admins/node", notice: "新建成功!"
     else
-      flash.now[:error] = @node.errors.inspect
+      flash.now[:alert] = @node.errors.inspect
       render 'new'
     end
   end
@@ -26,7 +26,7 @@ class NodesController < ApplicationController
     if @node.update(@node_params)
       redirect_to "/admins/node", notice: "更改成功!"
     else
-      flash.now[:error] = @node.errors.inspect
+      flash.now[:alert] = @node.errors.inspect
       render 'edit'
     end
   end
@@ -36,7 +36,7 @@ class NodesController < ApplicationController
     if @node.destroy
       redirect_to "/admins/node", notice: "删除成功!"
     else
-      flash.now[:error] = @node.errors.inspect
+      flash.now[:alert] = @node.errors.inspect
       render "admins/node"
     end
   end

@@ -86,10 +86,10 @@ class UsersController < ApplicationController
       update_comments_avatar
       redirect_to "/user/profile", notice: "头像更改成功"
     elsif avatar_params
-      flash.now[:error] = "更改头像失败:#{@current_user.errors.messages[:avatar]}"
+      flash.now[:alert] = "更改头像失败:#{@current_user.errors.messages[:avatar]}"
       render 'profile'
     else
-      flash.now[:error] = "更改头像失败:请选择文件"
+      flash.now[:alert] = "更改头像失败:请选择文件"
       render 'profile'
     end
   end
@@ -100,7 +100,7 @@ class UsersController < ApplicationController
       @current_user = nil
       redirect_to "/", notice:"账号注销成功!"
     else
-      redirect_to "/user", :flash=>{:error=>@user.errors.messages}
+      redirect_to "/user", :flash=>{:alert=>@user.errors.messages}
     end
   end
 

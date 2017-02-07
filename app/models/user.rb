@@ -9,12 +9,16 @@ class User < ActiveRecord::Base
   validates :user_name, presence:{:message=>"用户名不能为空"}
   validates :email, presence: {:message=>"邮箱不能为空"}, uniqueness: {:message=>"邮箱已被注册"}
   validates_each :invite_code, :on => :create do |record, attr, code_str|
-    if Settings.invited_code
-      if code_str and code = InviteCode.find_by(code: code_str,used:0)
-        code.update(used:1)
-        record.ref_by = code.user_id
-      else
-        record.errors.add attr, "Please enter correct invite code"
+    if Settings.skip_invited_code
+      Settings.skip_invited_code = false
+    else
+      if Settings.invited_code
+        if code_str and code = InviteCode.find_by(code: code_str,used:0)
+          code.update(used:1)
+          record.ref_by = code.user_id
+        else
+          record.errors.add attr, "Please enter correct invite code"
+        end
       end
     end
   end
