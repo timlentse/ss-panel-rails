@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:user_name,:invite_code])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:user_name,:invite_code,:reg_ip])
   end
 
   def is_login?
