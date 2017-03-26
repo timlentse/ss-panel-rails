@@ -38,3 +38,6 @@ public/system
 
 # Ignore DS_Store in mac
 *.DS_Store
+
+# Ignore my local files
+/lib/tasks/local_tasks.rake
