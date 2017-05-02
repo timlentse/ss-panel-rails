@@ -70,6 +70,9 @@ GEM
     capistrano-rails (1.2.0)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    capistrano-rvm (0.1.2)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2)
     chronic (0.10.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -171,8 +174,6 @@ GEM
     redis (3.3.1)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
-    rvm-capistrano (1.5.0)
-      capistrano (>= 2.15.4)
     sass (3.4.22)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -230,6 +231,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   byebug
   capistrano-rails
+  capistrano-rvm
   coffee-rails (~> 4.2)
   config
   devise
@@ -243,7 +245,6 @@ DEPENDENCIES
   puma
   rails (~> 5.0.0, >= 5.0.0.1)
   redis
-  rvm-capistrano
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   sidekiq
@@ -254,4 +255,4 @@ DEPENDENCIES
   will_paginate (~> 3.1.0)
 
 BUNDLED WITH
-   1.12.5
+   1.13.6

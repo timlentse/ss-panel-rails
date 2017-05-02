@@ -47,6 +47,6 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   # Use Capistrano for deployment
   gem 'capistrano-rails'
-  gem 'rvm-capistrano'
+  gem 'capistrano-rvm'
 end
 
