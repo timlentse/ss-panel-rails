@@ -1,9 +1,10 @@
 #! /bin/sh
 
-plantform_name=$(python -mplatform | tr '[:upper:]' '[:lower:]') 
+# 获取Linux发行版名称(目前只支持centos, ubuntu, mac)
+platform_name=$(python -mplatform | tr '[:upper:]' '[:lower:]') 
 
 get_distribution_name(){
-  case "$plantform_name" in
+  case "$platform_name" in
     *darwin*)
       echo "mac"
       ;;
@@ -71,7 +72,7 @@ install_stuff(){
     'ubuntu')
       apt-get update
       apt-get -y install build-essential
-      apt-get -y install mosh zsh git nginx mysql-client mysql-server libmysql++-dev libmysql++3
+      apt-get -y install git nginx mysql-client mysql-server libmysql++-dev libmysql++3
       apt-get -y install openssl libssl-dev nodejs
       install_redis
       install_ruby
@@ -79,7 +80,8 @@ install_stuff(){
       ;;
     'centos')
       yum update
-      yum -y install gcc mosh zsh git nginx mysql-client mysql-server
+      yum groupinstall "Development Tools"
+      yum -y install gcc git nginx mysql-client mysql-server
       yum -y install openssl openssl-devel nodejs
       install_redis
       install_ruby

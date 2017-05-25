@@ -1,11 +1,13 @@
 ## SS-Rails-Panel
 
-A Ruby on Rails copy of [ss-panel](https://github.com/orvice/ss-panel). Theme by [SB Admin 2 Theme](http://startbootstrap.com/template-overviews/sb-admin-2/)
+A copy of [ss-panel](https://github.com/orvice/ss-panel) written in Ruby on Rails. Theme by [SB Admin 2 Theme](http://startbootstrap.com/template-overviews/sb-admin-2/)
 
 ### ScreenShots
+
 ![alt tag](https://raw.githubusercontent.com/timlentse/ss-panel-rails/master/public/index.png)
 
 ### Requirements
+
 * Ruby 2.2+
 * Rails 4.2+
 * Mysql
@@ -17,32 +19,38 @@ A Ruby on Rails copy of [ss-panel](https://github.com/orvice/ss-panel). Theme by
 
 If you are new to ruby or rails, `One step setup` shell script was provided to install needed dependencies.
 
+* Note: This script only support Centos, Ubuntu and Mac OSX.
+
 Open your shell and type
 
 ```shell
+
 $ curl -Ssl https://raw.githubusercontent.com/timlentse/ss-panel-rails/master/setup.sh | sh
+
 ```
 
-* Now you should check [#2](#2-create-databaseyml) and [#3](#3-config-your-application) for how to make it works.
-
-Go to ss-panel-rails and type `rails s`
-
-Open browser and visit `http://localhost:3000`
-
+* Now you should check [#2](#2-create-databaseyml) and [#3](#3-config-your-application) for how to start the application.
 
 #### 2. Create database.yml
 
-For security consideration, the `database.yml` was not put in version control, so we should create one.
-We had provided an example file, rename it and change some important information(mysql account,password,etc)
+For security consideration, the `database.yml` was not on version control, so you should create one.
+An example file named `database.yml.example` was provided, rename it and change some important information(eg: account,password,database)
 
 ```shell
+
 $ mv config/database.yml.example config/database.yml
+
+
 ```
 
 #### 3. Config your application
+
 * Notice: 
-All private setting are stored in file `config/settings.local.yml`. Create a file `settings.local.yml` in directory `ss-panel-rails/config` and add the following for smtp setting
+
+All private settings are stored in file `config/settings.local.yml`. Create a file `settings.local.yml` in directory `ss-panel-rails/config` and add the following smtp settings
+
 ```ruby
+
 mailer: :mailgun # set to :smtp if you don't use mailgun
 email_sender: "noreply@example.com" # default send from
 
@@ -57,23 +65,32 @@ hash_secret: "hash-secret-for-paperclip"
 
 # Enable invited code feature `( true for enable )`
 invited_code: false
+
 ```
+
 * Regeister a mailgun account [here](http://www.mailgun.com) if you use mailgun to send email
 
 #### 4. Load database schema 
 
 ```shell
+
 $ bundle exec rake db:schema:load
-$ bundle exec rake db:seed    # this will create an admin account whose account_name is `admin@example.org`(you can change it in db/seed.rb)
+$ bundle exec rake db:seed    # this will create an admin account whose name is `admin@example.org`(you can always change it in db/seed.rb)
+
 ```
-#### 5. Sidekiq as the actionjob adapter
+
+#### 5. Sidekiq as actionjob adapter
 
 This repo uses actioncable for chat and sidekiq for message relay job, so you should run `bundle exec sidekiq` to get activejob runs.
 
 ### Time to playaround
+
 Go to app root directory and type:
+
 ```shell
+
 $ rails s
+
 ```
 open browser and visit [http://localhost:3000](http://localhost:3000)
 
