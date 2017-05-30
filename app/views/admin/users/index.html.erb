@@ -36,7 +36,7 @@
                   <td><%= user.reg_ip %></td>
                   <td>
                     <a href="/admin/users/<%= user.id %>/edit" class="btn btn-info">编辑</a>
-                    <%= link_to "删除","/admin/users/#{user.id}", method:"delete", class:'btn btn-danger' %>
+                    <%= link_to "删除","/admin/users/#{user.id}", method:"delete", class:'btn btn-danger', data: {confirm: "确定要删除吗?"} %>
                   </td>
                 </tr>
               <% end %>

@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/thoughtbot/paperclip.git
-  revision: 915c904d9a1382f53f4dcc822878ebb7c2024bb6
+  remote: https://github.com/thoughtbot/paperclip.git
+  revision: 093b4da18444d883de826f58628089c2f480d461
   specs:
     paperclip (5.1.0)
       activemodel (>= 4.2.0)
@@ -74,8 +74,7 @@ GEM
       capistrano (~> 3.0)
       sshkit (~> 1.2)
     chronic (0.10.2)
-    climate_control (0.0.3)
-      activesupport (>= 3.0)
+    climate_control (0.2.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.1)
@@ -255,4 +254,4 @@ DEPENDENCIES
   will_paginate (~> 3.1.0)
 
 BUNDLED WITH
-   1.13.6
+   1.15.0

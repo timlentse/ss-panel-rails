@@ -31,8 +31,8 @@
           <%= f.number_field :port,class:"form-control" %>
           </p>
           <p>
-          <%= f.label :流量 %>
-          <%= f.number_field :transfer_enable,class:"form-control" %>
+          <%= f.label "流量(GB)" %>
+          <%= f.number_field :transfer_enable,class:"form-control",value: "#{@user.transfer_enable/1024**3}" %>
           </p>
           <p>
           <%= f.submit "修改",class: "btn btn-info" %>

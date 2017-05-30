@@ -1,12 +1,15 @@
 App.chatroom = App.cable.subscriptions.create "ChatroomChannel",
-  connected: ->
 # Called when the subscription is ready for use on the server
+  connected: ->
+    console.log("connected")
 
-  disconnected: ->
 # Called when the subscription has been terminated by the server
+  disconnected: ->
+    console.log("disconnected")
 
   received: (data) ->
     $('#chat-msg').append(data.content)
+    console.log("received")
   
   send_comment: (msg) ->
     @perform 'send_comment', content: msg
