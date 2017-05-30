@@ -1,4 +1,4 @@
-## SS-Rails-Panel
+## SS-Panel-Rails
 
 A copy of [ss-panel](https://github.com/orvice/ss-panel) written in Ruby on Rails. Theme by [SB Admin 2 Theme](http://startbootstrap.com/template-overviews/sb-admin-2/)
 
@@ -9,7 +9,7 @@ A copy of [ss-panel](https://github.com/orvice/ss-panel) written in Ruby on Rail
 ### Requirements
 
 * Ruby 2.2+
-* Rails 4.2+
+* Rails 5.0+
 * Mysql
 * Redis
 
@@ -40,14 +40,12 @@ An example file named `database.yml.example` was provided, rename it and change 
 
 $ mv config/database.yml.example config/database.yml
 
-
 ```
 
 #### 3. Config your application
 
 * Notice: 
-
-All private settings are stored in file `config/settings.local.yml`. Create a file `settings.local.yml` in directory `ss-panel-rails/config` and add the following smtp settings
+   All private settings are stored in file `config/settings.local.yml`. Create a file `settings.local.yml` in directory `ss-panel-rails/config` and add the following smtp settings
 
 ```ruby
 
@@ -81,7 +79,7 @@ $ bundle exec rake db:seed    # this will create an admin account whose name is 
 
 #### 5. Sidekiq as actionjob adapter
 
-This repo uses actioncable for chat and sidekiq for message relay job, so you should run `bundle exec sidekiq` to get activejob runs.
+This repo uses `Action Cable` to implement chat module and [sidekiq](https://github.com/mperham/sidekiq) for message relay job, so you should run `bundle exec sidekiq` to get activejob runs.
 
 ### Time to playaround
 
