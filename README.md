@@ -10,7 +10,7 @@ A copy of [ss-panel](https://github.com/orvice/ss-panel) written in Ruby on Rail
 
 * Ruby 2.2+
 * Rails 5.0+
-* Mysql
+* MySQL
 * Redis
 
 ### Installation
@@ -19,7 +19,7 @@ A copy of [ss-panel](https://github.com/orvice/ss-panel) written in Ruby on Rail
 
 If you are new to ruby or rails, `One step setup` shell script was provided to install needed dependencies.
 
-* Note: This script only support Centos, Ubuntu and Mac OSX.
+* Note: This script only support CentOS, Ubuntu and Mac OSX.
 
 Open your shell and type
 
@@ -34,7 +34,7 @@ $ curl -Ssl https://raw.githubusercontent.com/timlentse/ss-panel-rails/master/se
 #### 2. Create database.yml
 
 For security consideration, the `database.yml` was not on version control, so you should create one.
-An example file named `database.yml.example` was provided, rename it and change some important information(eg: account,password,database)
+An example file named `database.yml.example` was provided, rename it and change some important informations(eg: account, password, database)
 
 ```shell
 
@@ -46,6 +46,9 @@ $ mv config/database.yml.example config/database.yml
 
 * Notice: 
    All private settings are stored in file `config/settings.local.yml`. Create a file `settings.local.yml` in directory `ss-panel-rails/config` and add the following smtp settings
+
+
+* Regeister a mailgun account [here](http://www.mailgun.com) if you use mailgun to send email
 
 ```ruby
 
@@ -66,8 +69,6 @@ invited_code: false
 
 ```
 
-* Regeister a mailgun account [here](http://www.mailgun.com) if you use mailgun to send email
-
 #### 4. Load database schema 
 
 ```shell
@@ -77,9 +78,9 @@ $ bundle exec rake db:seed    # this will create an admin account whose name is 
 
 ```
 
-#### 5. Sidekiq as actionjob adapter
+#### 5. Sidekiq as active job adapter
 
-This repo uses `Action Cable` to implement chat module and [sidekiq](https://github.com/mperham/sidekiq) for message relay job, so you should run `bundle exec sidekiq` to get activejob runs.
+This repo uses `Action Cable` to implement chat module and [sidekiq](https://github.com/mperham/sidekiq) for message relay job, so you should run `bundle exec sidekiq` to get active job runs.
 
 ### Time to playaround
 
