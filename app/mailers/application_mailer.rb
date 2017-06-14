@@ -1,11 +1,11 @@
-if Settings.mailer==:mailgun
+if Settings.mailer == :mailgun
   ActionMailer::Base.smtp_settings = {
-    :port           => 587,
-    :address        => 'smtp.mailgun.org',
-    :user_name      => Settings.mailgun_user_name,
-    :password       => Settings.mailgun_password,
-    :domain         => Settings.mailgun_domain,
-    :authentication => :plain,
+    port: 587,
+    address:  'smtp.mailgun.org',
+    user_name:  Settings.mailgun_user_name,
+    password:  Settings.mailgun_password,
+    domain:  Settings.mailgun_domain,
+    authentication: :plain
   }
 end
 
