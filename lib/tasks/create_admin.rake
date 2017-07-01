@@ -1,5 +1,5 @@
 desc 'create an admin account'
-task create_admini: :environment do
+task create_admin: :environment do
   email     = ENV['email']
   passwd    = ENV['passwd']
   user_name = ENV['name']

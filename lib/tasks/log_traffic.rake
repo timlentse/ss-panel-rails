@@ -1,5 +1,5 @@
 desc 'record daily traffic log'
-task traffici: :environment do
+task traffic: :environment do
   User.find_each do |user|
     found = UserTrafficLog.where(user_idi: user.id).order(id: :desc).first
     this_month = Date.today.month
